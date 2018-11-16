@@ -1,11 +1,10 @@
 package com.project1.demo.data.repository;
 
-import com.project1.demo.data.entity.Student;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.project1.demo.data.entity.Player;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface StudentRepository extends CrudRepository<Student, Long> {
+public interface PlayerRepository extends CrudRepository<Player, Long> {
 }

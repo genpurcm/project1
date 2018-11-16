@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="STUDENT")
-public class Student {
+public class Player {
     @Id
     @Column(name="STUDENT_ID")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -16,14 +16,17 @@ public class Student {
     private String email_Address;
     @Column(name="PURCHASE_PACKAGE")
     private String purchase_Package;
+    @Column(name="NAMEFIELD")
+    private String namefield;
 
-    public Student(String name, String email_Address, String purchase_Package) {
+    public Player(String name, String email_Address, String purchase_Package, String namefield) {
         this.name = name;
         this.email_Address = email_Address;
         this.purchase_Package = purchase_Package;
+        this.namefield = namefield;
     }
 
-    public Student() {
+    public Player() {
 
     }
 
@@ -50,4 +53,8 @@ public class Student {
     public void setPurchase_Package(String purchase_Package) {
         this.purchase_Package = purchase_Package;
     }
+
+    public String getNamefield() {return namefield; }
+
+    public void setNamefield(String namefield) { this.namefield = namefield; }
 }
