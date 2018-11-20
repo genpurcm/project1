@@ -33,18 +33,22 @@ public UploadFileResponse mapReapExcelDatatoDB(@RequestParam("nameField") String
         for(int i=1; i<worksheet.getPhysicalNumberOfRows(); i++) {
             Player tempPlayer = new Player();
 
+            //Skip the Excel's header.
             XSSFRow row = worksheet.getRow(i);
 
-//            tempPlayer.setId((int) row.getCell(0).getNumericCellValue());
-//            tempPlayer.setContent(row.getCell(1).getStringCellValue());
-//            tempStudentList.add(tempPlayer);
-
-            tempPlayer.setName(row.getCell(0).getStringCellValue());
-            System.out.println(tempPlayer.getName());
-            tempPlayer.setEmail_Address(row.getCell(1).getStringCellValue());
-            System.out.println(tempPlayer.getEmail_Address());
-            tempPlayer.setPurchase_Package(row.getCell(2).getStringCellValue());
-            System.out.println(tempPlayer.getPurchase_Package());
+            tempPlayer.setFirst_Name(row.getCell(0).getStringCellValue());
+            System.out.println(tempPlayer.getFirst_Name());
+            tempPlayer.setLast_Name(row.getCell(1).getStringCellValue());
+            tempPlayer.setEmail_Address(row.getCell(2).getStringCellValue());
+            tempPlayer.setTeam(row.getCell(3).getStringCellValue());
+            tempPlayer.setNumber(row.getCell(4).getNumericCellValue());
+            System.out.println(tempPlayer.getNumber());
+            System.out.println(row.getCell(4).getNumericCellValue());
+//            tempPlayer.setPosition(row.getCell(5).getStringCellValue());
+            tempPlayer.setBirthday(row.getCell(6).getDateCellValue());
+            tempPlayer.setWeight(row.getCell(7).getNumericCellValue());
+            tempPlayer.setHeight(row.getCell(8).getNumericCellValue());
+            tempPlayer.setNationality(row.getCell(9).getStringCellValue());
             tempPlayer.setNamefield(nameField);
             System.out.println(nameField);
 

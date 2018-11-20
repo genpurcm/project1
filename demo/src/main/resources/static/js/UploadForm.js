@@ -28,6 +28,7 @@ $('#singleUploadForm').submit(function(event) {
             $("#singleFileUploadSuccess").append("<p style='color:blue'>File Type: " + data.fileType + "</p>");
             $("#singleFileUploadSuccess").append("<p style='color:blue'>Description: " + data.nameField + "</p>");
 
+
 //            var dataparsed = JSON.parse(data);
 //            $("#singleFileUploadSuccess").append("<p id='success2' style='color:blue'>" + jqXHR.responseText + "</p>");
 //
