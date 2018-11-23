@@ -16,4 +16,8 @@ public class PlayerService {
 
     }
 
+//    public Player GetPlayerByName(String name){
+//        playerRepository.findByName(String name);
+//    }
+
 }
