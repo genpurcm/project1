@@ -5,6 +5,8 @@ import com.project1.demo.data.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PlayerService {
 
@@ -16,8 +18,14 @@ public class PlayerService {
 
     }
 
+    public Iterable<Player> getPlayers(){
+//        Iterable<Player> foundPlayers = playerRepository.findAll();
+        return playerRepository.findAll();
+    }
+
 //    public Player GetPlayerByName(String name){
 //        playerRepository.findByName(String name);
 //    }
+
 
 }

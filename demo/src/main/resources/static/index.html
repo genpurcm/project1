@@ -1,81 +1,214 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Spring Boot File Upload / Download Rest API Example</title>
-    <link rel="stylesheet" href="/css/main.css" />
+    <title>Index</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+
+
+  <style>
+  body {
+    <!--padding-top:120px;-->
+      <!--position: relative;-->
+      <!--background-color:black;-->
+    overflow-y: hidden;
+  }
+
+  @media screen and (max-width: 567px) {
+    #myScrollspy {
+      background: yellow !important;
+      position: fixed-top;
+    }
+    body {background: red;
+    }
+  }
+
+  <!--.col-12 div {-->
+    <!--&lt;!&ndash;height: 500px;&ndash;&gt;-->
+    <!--height: responsive;-->
+    <!--position:relative;-->
+    <!--padding-top: 8px;-->
+  <!--}-->
+
+  <!--.col-12 {-->
+    <!--padding-top:8px;-->
+  <!--}-->
+  ul.nav-pills {
+    <!--top: relative;-->
+    <!--width:100%;-->
+    <!--position: fixed;-->
+  }
+
+  a.nav-link {
+    padding-right:4px;
+    padding-left:4px;
+  }
+
+  #section1 {color: #fff; background-color: #1E88E5; padding-right:4px; padding-left:8px;}
+  #section2 {color: #fff; background-color: #673ab7; padding-right:4px; padding-left:8px;}
+  #section3 {color: #fff; background-color: #ff9800; padding-right:4px; padding-left:8px;}
+  #section41 {color: #fff; background-color: #00bcd4; padding-right:4px; padding-left:8px;}
+  #section42 {color: #fff; background-color: #009688; padding-right:4px; padding-left:8px;}
+
+  .sticky-offset {
+    <!--top: 100px;-->
+    top:20px;
+  }
+
+  .kk .item1 {
+    height:45%;
+    position:relative;
+    top:0%;
+    background:pink;
+  }
+
+  .kk .item2 {
+    height:45%;
+    position:relative;
+    top:10%;
+    background:green;
+  }
+
+  #myScrollspy {
+    z-index: 1025;
+  }
+
+  </style>
 </head>
-<style>
-#table {
-border-collapse: collapse;
-width: 100%;
-}
-th, td {
-text-align: left;
-padding: 8px;
-}
-tr:nth-child(even){background-color: white}
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
 
-th {
-background-color: #128ff2;
-color: white;
-}
-</style>
-
-<body>
-<noscript>
-    <h2>Sorry! Your browser doesn't support Javascript</h2>
-</noscript>
-<div class="upload-container">
-    <div class="upload-header">
-        <h2>Spring Boot File Upload / Download Rest API Example</h2>
+<div class="container-fluid responsive-height card" style="background-color:#2196F3;color:#fff;min-height:responsive;">
+    <div class="row" id="firstRow">
+        <div class="col">
+            <h1>index</h1>
+            <h3>Fixed vertical sidenav on scroll</h3>
+        </div>
     </div>
-    <div class="upload-content">
-        <div class="single-upload">
-            <h3>Upload Single File</h3>
-            <form id="singleUploadForm" name="singleUploadForm">
-                <input id="singleFileUploadInput" type="file" name="file" class="file-input" required />
-                <input id="singleFileUploadName" type="text" name="nameField" class="file-input" required />
-                <button type="submit" class="primary submit-btn">Submit</button>
-            </form>
-            <div class="upload-response">
-                <div id="singleFileUploadSuccess"></div>
-                <div id="singleFileUploadError"></div>
+</div>
+
+<div class="container-fluid responsive-height">
+    <div class="row" style="padding:2px 1px 2px 1px;">
+        <!--SIDEBAR-->
+        <div class="col-sm-2 col-lg-1" style="padding-right:1px; padding-left:1px;">
+            <div class="sticky-top card text-center d-none d-sm-block" style="margin:1px;min-height:200px;padding:10px 4px 4px 4px;">
+            </div>
+            <nav class="sticky-top card" id="myScrollspy" style="background:black;margin:1px;padding:10px 4px 4px 4px;">
+            <ul class="nav nav-pills nav-stacked justify-content-between">
+                <li class="nav-item">
+                    <a class="nav-link" href="#section1">Section 1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#section2">Section 2</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#section3">Section 3</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Section 4<span class="caret"></span></a>
+                    <ul class="dropdown-menu" style="min-width:120px;">
+                        <li><a class="dropdown-item" href="#section41">Link 1</a></li>
+                        <li><a class="dropdown-item" href="#section42">Link 2</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+            <div class="kk sticky-top" style="height:100vh;margin:1px;">
+                <div class="item1 sticky card text-center" style="padding:10px 4px 4px 4px;">
+                    <a href="/UploadFile.html" target="_blank"><button>File Upload</button></a>
+                    <button onclick="window.open('/PlayerList.html')">Player List</button>
+                    <form role="search" method="get" action="/players" target="_blank">
+                        <button type="submit">Form Players</button>
+                    </form>
+
+                    <input type="button" onClick="Ajax()" value="Ajax">
+                    <input type="button" id="Ajax2" value="Ajax2">
+                </div>
             </div>
         </div>
-        <!--<div class="multiple-upload">-->
-            <!--<h3>Upload Multiple Files</h3>-->
-            <!--<form id="multipleUploadForm" name="multipleUploadForm">-->
-                <!--<input id="multipleFileUploadInput" type="file" name="files" class="file-input" multiple required />-->
-                <!--<button type="submit" class="primary submit-btn">Submit</button>-->
-            <!--</form>-->
-            <!--<div class="upload-response">-->
-                <!--<div id="multipleFileUploadError"></div>-->
-                <!--<div id="multipleFileUploadSuccess"></div>-->
-            <!--</div>-->
-        <!--</div>-->
+        <!--MainArea-->
+        <div class="col-sm-10 col-lg-11" style="position:relative;z-index:1;padding-right:1px;padding-left:1px;">
+            <div id="section1" class="bg-success card sticky-top sticky-offset" style="margin:1px;">
+                    <h1>Section 1</h1>
+                        <div class="container">
+                            <div class="page-header">
+                                <h1>Welcome to the TEST Reservations Page</h1>
+                            </div>
+                            <div class="input-group">
+                                <span class=".input-group-addon" id="basic-addon1"><span class="fas fa-calendar-alt" style="color:black;margin:0px 5px;text-align:center;"></span></span>
+                                <input type="text" class="form-control" id="datepicker" aria-describedby="basic-addon1"/>
+                            </div>
+
+                            <table class="table table-striped table-bordered">
+                                <tr>
+                                    <td>Room</td>
+                                    <td>Room Number</td>
+                                    <td>Guest</td>
+                                </tr>
+                                <tr th:each="roomReservationn: ${roomReservations}">
+                                    <td th:text="${roomReservationn.roomName}">Room Name</td>
+                                    <td th:text="${roomReservationn.roomNumber}">Room Number</td>
+                                    <td th:text="${roomReservationn.lastName}!=null? ${roomReservationn.lastName} + ', ' + ${roomReservationn.firstName} : 'VACANT'">Full Name</td>
+                                </tr>
+                            </table>
+                        </div>
+            </div>
+            <div id="section2" class="bg-warning card sticky-top" style="margin:1px;">
+                    <h1>Section 2</h1>
+
+                    <div id="added_items">
+                        <br>
+                        <br>
+                        <h1>The elements added are below:</h1>
+                        <table id="table">
+                            <thead>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email Address</th>
+                                <th>Birthday</th>
+                            </tr>
+                            </thead>
+                            <tbody id="table_body1">
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+            </div>
+            <div id="section3" class="bg-secondary card sticky-top" style="margin:1px;">
+                    <h1>Section 3</h1>
+            </div>
+            <div id="section41" class="bg-danger card sticky-top" style="margin:1px;">
+                    <h1>Section 4-1</h1>
+            </div>
+            <div id="section42" class="bg-info card sticky-top" style="margin:1px;">
+                    <h1>Section 4-2</h1>
+            </div>
+        </div>
     </div>
-
-
 </div>
+<footer>
+    <div class="container-fluid responsive-height card" style="background-color:#2196F3;color:#fff;min-height:responsive;">
+        <div class="row" id="footerRow">
+            <div class="col">
+                <h1>Footer</h1>
+                <h3>This is the last step</h3>
+            </div>
+        </div>
+    </div>
+</footer>
 
-<div id="added_items" style="display:none">
-    <h1>The elements added are below:</h1>
-    <table id="table">
-        <thead>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email Address</th>
-            <th>Birthday</th>
-        </tr>
-        </thead>
-        <tbody id="table_body">
-        </tbody>
-    </table>
-</div>
-<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<script src="/js/UploadForm.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="js/site.js"></script>
+<script src="js/site-TEST_Buttons.js"></script>
+
 </body>
 </html>

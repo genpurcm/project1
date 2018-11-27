@@ -26,7 +26,7 @@ public class FileUploadController {
     private PlayerService playerService;
 
     @PostMapping("/upload")
-public UploadFileResponse mapReapExcelDatatoDB(@RequestParam("nameField") String nameField, @RequestParam("file") MultipartFile ExcelDataFile) throws IOException, InvalidFormatException {
+    public UploadFileResponse mapReapExcelDatatoDB(@RequestParam("nameField") String nameField, @RequestParam("file") MultipartFile ExcelDataFile) throws IOException, InvalidFormatException {
         List<Player> tempPlayerList = new ArrayList<Player>();
         try {
 
