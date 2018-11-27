@@ -126,7 +126,7 @@
                         <button type="submit">Form Players</button>
                     </form>
 
-                    <input type="button" onClick="Ajax()" value="Ajax">
+                    <input type="button" onClick="GetPlayerList()" value="Get Players">
                     <input type="button" id="Ajax2" value="Ajax2">
                 </div>
             </div>
@@ -160,23 +160,25 @@
             </div>
             <div id="section2" class="bg-warning card sticky-top" style="margin:1px;">
                     <h1>Section 2</h1>
-
-                    <div id="added_items">
-                        <br>
-                        <br>
-                        <h1>The elements added are below:</h1>
-                        <table id="table">
-                            <thead>
-                            <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Email Address</th>
-                                <th>Birthday</th>
-                            </tr>
-                            </thead>
-                            <tbody id="table_body1">
-                            </tbody>
-                        </table>
+                    <div class="container">
+                        <div id="added_items" style="display:none">
+                            <div class="page-header">
+                                <h1>The elements added are below:</h1>
+                            </div>
+                            <table id="table">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email Address</th>
+                                    <th>Birthday</th>
+                                </tr>
+                                </thead>
+                                <tbody id="table_body">
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
 
@@ -208,7 +210,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="js/site.js"></script>
-<script src="js/site-TEST_Buttons.js"></script>
+<script src="js/API-Requests.js"></script>
 
 </body>
 </html>
