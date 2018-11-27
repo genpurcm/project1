@@ -7,26 +7,25 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
-    <a>KK</a>
-    <input type="button" onClick="Ajax()" value="Ajax">
-
-    <!--<div id="added_items1" style="display:none">-->
-    <div id="added_items1">
+    <input type="button" onClick="GetPlayerList()" value="Get Players">
+    <div class="container">
+        <div id="added_items" style="display:none;width:90%;margin:auto;text-align:center">
         <h1>The elements added are below:</h1>
-        <table id="table">
+        <table id="table" style="width:80%;margin:auto">
             <thead>
             <tr>
+                <th>#</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email Address</th>
                 <th>Birthday</th>
             </tr>
             </thead>
-            <tbody id="table_body1">
+            <tbody id="table_body">
             </tbody>
         </table>
     </div>
-    <P>HELLO</P>
-<script src="js/site-TEST_Buttons.js"></script>
+    </div>
+<script src="js/API-Requests.js"></script>
 </body>
 </html>
