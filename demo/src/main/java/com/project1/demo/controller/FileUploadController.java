@@ -43,9 +43,9 @@ public class FileUploadController {
                 }
                 Player tempPlayer = new Player();
                 //            Iterator<Cell> cellsInRow = currentRow.iterator();
-                tempPlayer.setFirst_Name(row.getCell(0).getStringCellValue());
-                tempPlayer.setLast_Name(row.getCell(1).getStringCellValue());
-                tempPlayer.setEmail_Address(row.getCell(2).getStringCellValue());
+                tempPlayer.setFirstName(row.getCell(0).getStringCellValue());
+                tempPlayer.setLastName(row.getCell(1).getStringCellValue());
+                tempPlayer.setEmailAddress(row.getCell(2).getStringCellValue());
                 tempPlayer.setTeam(row.getCell(3).getStringCellValue());
                 tempPlayer.setNumber(row.getCell(4).getNumericCellValue());
 //                tempPlayer.setPosition(row.getCell(5).getStringCellValue());

@@ -12,12 +12,12 @@ public class Player {
     @Column(name = "PLAYER_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "FIRST_NAME")
-    private String first_Name;
-    @Column(name = "LAST_NAME")
-    private String Last_Name;
-    @Column(name = "EMAIL_ADDRESS")
-    private String email_Address;
+    @Column(name = "FIRSTNAME")
+    private String firstName;
+    @Column(name = "LASTNAME")
+    private String lastName;
+    @Column(name = "EMAILADDRESS")
+    private String emailAddress;
     @Column(name = "TEAM")
     private String team;
     @Column(name = "NUMBER")
@@ -35,11 +35,11 @@ public class Player {
     @Column(name = "NAMEFIELD")
     private String namefield;
 
-    public Player(long id, String first_Name, String last_Name, String email_Address, String team, double number, String position, Date birthday, double weight, double height, String nationality, String namefield) {
+    public Player(long id, String firstName, String lastName, String emailAddress, String team, double number, String position, Date birthday, double weight, double height, String nationality, String namefield) {
         this.id = id;
-        this.first_Name = first_Name;
-        Last_Name = last_Name;
-        this.email_Address = email_Address;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
         this.team = team;
         this.number = number;
         this.position = position;
@@ -62,28 +62,28 @@ public class Player {
         this.id = id;
     }
 
-    public String getFirst_Name() {
-        return first_Name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_Name(String first_Name) {
-        this.first_Name = first_Name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_Name() {
-        return Last_Name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_Name(String last_Name) {
-        Last_Name = last_Name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getEmail_Address() {
-        return email_Address;
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
-    public void setEmail_Address(String email_Address) {
-        this.email_Address = email_Address;
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
     public String getTeam() {
