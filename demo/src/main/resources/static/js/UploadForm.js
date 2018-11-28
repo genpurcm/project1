@@ -35,7 +35,7 @@ $('#singleUploadForm').submit(function(event) {
 
                 var birthdayItem = new Date(item.birthday);
                 var birthday = (birthdayItem.getMonth() + 1) + "/" + birthdayItem.getDate() + "/" + birthdayItem.getFullYear();
-                $("#table_body").append("<tr><td>" + item.first_Name + "</td><td>" + item.last_Name + "</td><td>" + item.email_Address + "</td><td>" + birthday + "</td></tr>")
+                $("#table_body").append("<tr><td>" + item.firstName + "</td><td>" + item.lastName + "</td><td>" + item.emailAddress + "</td><td>" + birthday + "</td></tr>")
             });
         },
         error: function (jqXHR, textStatus, errorThrown) {
