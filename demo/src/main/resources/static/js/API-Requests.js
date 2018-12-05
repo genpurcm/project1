@@ -1,3 +1,6 @@
+//import * as lib from './UploadForm.js';
+//import {dateFormat} from './UploadForm.js';
+
 function GetPlayerList() {
     $.ajax({
         type: 'GET',
@@ -8,9 +11,9 @@ function GetPlayerList() {
 //        contentType: false,
         success: function(data){
             $.each(data, function(idx, item){
-                var birthdayItem = new Date(item.birthday);
-                var birthday = (birthdayItem.getMonth() + 1) + "/" + birthdayItem.getDate() + "/" + birthdayItem.getFullYear();
-                $("#table_body").append("<tr><td>" + idx + "</td><td>" + item.firstName + "</td><td>" + item.lastName + "</td><td>" + item.emailAddress + "</td><td>" + birthday + "</td></tr>")
+//                var birthdayItem = new Date(item.birthday);
+//                var birthday = (birthdayItem.getMonth() + 1) + "/" + birthdayItem.getDate() + "/" + birthdayItem.getFullYear();
+                $("#table_body").append("<tr><td>" + idx + "</td><td>" + item.firstName + "</td><td>" + item.lastName + "</td><td>" + item.emailAddress + "</td><td>" + item.birthday + "</td></tr>")
             });
             $('#added_items').show("slow");
         },

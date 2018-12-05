@@ -15,9 +15,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.*;
 
 @RestController
 public class FileUploadController {
@@ -49,7 +49,14 @@ public class FileUploadController {
                 tempPlayer.setTeam(row.getCell(3).getStringCellValue());
                 tempPlayer.setNumber(row.getCell(4).getNumericCellValue());
 //                tempPlayer.setPosition(row.getCell(5).getStringCellValue());
-                tempPlayer.setBirthday(row.getCell(6).getDateCellValue());
+
+                Date date = row.getCell(6).getDateCellValue();
+                LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                int year  = localDate.getYear();
+                int month = localDate.getMonthValue();
+                int day   = localDate.getDayOfMonth();
+                tempPlayer.setBirthday(localDate);
+//                tempPlayer.setBirthday(row.getCell(6).getDateCellValue());
                 tempPlayer.setWeight(row.getCell(7).getNumericCellValue());
                 tempPlayer.setHeight(row.getCell(8).getNumericCellValue());
                 tempPlayer.setNationality(row.getCell(9).getStringCellValue());

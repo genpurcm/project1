@@ -1,6 +1,8 @@
 package com.project1.demo.data.entity;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
@@ -25,7 +27,8 @@ public class Player {
     @Column(name = "POSITION")
     private String position;
     @Column(name = "BIRTHDAY")
-    private Date birthday;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate birthday;
     @Column(name = "WEIGHT")
     private double weight;
     @Column(name = "HEIGHT")
@@ -35,7 +38,7 @@ public class Player {
     @Column(name = "NAMEFIELD")
     private String namefield;
 
-    public Player(long id, String firstName, String lastName, String emailAddress, String team, double number, String position, Date birthday, double weight, double height, String nationality, String namefield) {
+    public Player(long id, String firstName, String lastName, String emailAddress, String team, double number, String position, LocalDate birthday, double weight, double height, String nationality, String namefield) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -110,11 +113,11 @@ public class Player {
         this.position = position;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
