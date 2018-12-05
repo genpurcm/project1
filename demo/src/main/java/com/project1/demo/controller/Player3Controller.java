@@ -30,13 +30,13 @@ public class Player3Controller {
     @PostMapping("/save")
     public String save(Player player){
         player3Repository.save(player);
-        return "redirect:player3";
+        return "redirect:players3";
     }
 
     @GetMapping("/delete")
     public String delete(Long Id){
         player3Repository.deleteById(Id);
-        return "redirect:player3";
+        return "redirect:/players3";
     }
 
     @GetMapping("/findById")

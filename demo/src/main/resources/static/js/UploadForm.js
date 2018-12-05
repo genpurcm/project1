@@ -32,10 +32,9 @@ $('#singleUploadForm').submit(function(event) {
             document.getElementById("added_items").style.display = 'block';
 
             $.each(data.playerList, function(idx, item){
-
-                var birthdayItem = new Date(item.birthday);
-                var birthday = (birthdayItem.getMonth() + 1) + "/" + birthdayItem.getDate() + "/" + birthdayItem.getFullYear();
-                $("#table_body").append("<tr><td>" + item.firstName + "</td><td>" + item.lastName + "</td><td>" + item.emailAddress + "</td><td>" + birthday + "</td></tr>")
+//                var birthdayItem = new Date(item.birthday);
+//                var birthday = (birthdayItem.getMonth() + 1) + "/" + birthdayItem.getDate() + "/" + birthdayItem.getFullYear();
+                $("#table_body").append("<tr><td>" + item.firstName + "</td><td>" + item.lastName + "</td><td>" + item.emailAddress + "</td><td>" + dateFormat(item.birthday) + "</td></tr>")
             });
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -52,3 +51,8 @@ $('#singleUploadForm').submit(function(event) {
     $('#singleUploadForm')[0].reset();
 });
 
+function dateFormat(itemBirthday){
+    var birthdayItem = new Date(itemBirthday);
+    var birthday = (birthdayItem.getMonth() + 1) + "/" + birthdayItem.getDate() + "/" + birthdayItem.getFullYear();
+    return birthday
+}
