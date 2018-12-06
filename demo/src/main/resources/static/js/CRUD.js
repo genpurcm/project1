@@ -6,7 +6,10 @@ $(function(){
         var text = $(this).text();
         console.log(text);
         if (text == 'Edit'){
-            console.log("It is Edit");
+            $('#save-createBtn').val("Save").removeClass( "btn-success" ).addClass( "btn-primary" );
+            $('.form-group #Nro').parent().closest('div').css('display', 'block');
+            $('.form-group #id').parent().closest('div').show();
+            $('.form-group #id').prop("disabled", true);
             $('.myForm #Nro').val($(this).attr('value'));
     //        ****** TEST JSON PROCESSING ******
     //        console.log($(this).data('valuejson'));
@@ -37,7 +40,10 @@ $(function(){
             $('.myForm #emailAddress').val('');
             $('.myForm #birthday').val('');
             $('.myForm #exampleModal').modal();
-            $('#save-createBtn').val("Create").removeClass( "btn-primary" ).addClass( "btn-success" );;
+            $('#save-createBtn').val("Create").removeClass( "btn-primary" ).addClass( "btn-success" );
+//            $('#save-createBtn').val("Create").toggleClass("btn-primary btn-success");
+            $('.form-group #Nro').parent().closest('div').css('display', 'none');
+            $('.form-group #id').parent().closest('div').hide();
         }
     });
 

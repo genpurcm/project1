@@ -1,7 +1,7 @@
 package com.project1.demo.controller;
 
 import com.project1.demo.data.entity.Player;
-import com.project1.demo.data.repository.Player3Repository;
+import com.project1.demo.data.repository.CrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -14,35 +14,35 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.Optional;
 
 @Controller
-public class Player3Controller {
+public class CrudController {
 
 
     @Autowired
-    private Player3Repository player3Repository;
+    private CrudRepository crudRepository;
 
-    @GetMapping("/players3")
+    @GetMapping("/crud")
     public String showPlayer3(Model model, @RequestParam(defaultValue = "0") int page){
-        model.addAttribute("data", player3Repository.findAll(PageRequest.of(page, 5)));
+        model.addAttribute("data", crudRepository.findAll(PageRequest.of(page, 5)));
         model.addAttribute("currentPage", page);
-        return "player3";
+        return "crud";
     }
 
     @PostMapping("/save")
     public String save(Player player){
-        player3Repository.save(player);
-        return "redirect:players3";
+        crudRepository.save(player);
+        return "redirect:crud";
     }
 
     @GetMapping("/delete")
     public String delete(Long Id){
-        player3Repository.deleteById(Id);
-        return "redirect:/players3";
+        crudRepository.deleteById(Id);
+        return "redirect:crud";
     }
 
     @GetMapping("/findById")
     @ResponseBody
     public Optional<Player> findById(Long Id){
-        return player3Repository.findById(Id);
+        return crudRepository.findById(Id);
     }
 
 

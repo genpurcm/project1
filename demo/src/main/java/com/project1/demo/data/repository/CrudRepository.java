@@ -6,7 +6,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 
 @RepositoryRestResource(exported = false)
-public interface Player3Repository extends JpaRepository<Player, Long> {
+public interface CrudRepository extends JpaRepository<Player, Long> {
 
 
 
