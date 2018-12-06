@@ -7,12 +7,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-    <script type="text/javascript" th:src="@{js/site2.js}" src="../static/js/site2.js"></script>
+    <script type="text/javascript" th:src="@{js/CRUD.js}" src="../static/js/CRUD.js"></script>
     <!--<scrip src="js/site.js"></scrip>-->
 </head>
 <body>
 
     <div class="container">
+        <br>
+        <div>
+            <h1 color="blue">CRUD...</h1>
+        </div>
+        <br>
         <button class="btn btn-success nBtn">New</button>
         <div class="card">
             <div class="card-block">
@@ -66,7 +71,7 @@
                         <div class="modal-body">
                                 <div class="form-group">
                                     <label for="Nro" class="col-form-label">Nro:</label>
-                                    <input type="text" class="form-control" id="Nro" name="Nro" value="" />
+                                    <input type="text" class="form-control" id="Nro" name="Nro" value="" disabled="disabled"/>
                                 </div>
                                 <div class="form-group">
                                     <label for="id" class="col-form-label">ID:</label>
