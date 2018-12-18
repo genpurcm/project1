@@ -27,7 +27,6 @@ $(function(){
     //        console.log(json);
     //        console.log("Data: " + json);
     //        console.log("jsonData: " + json[0].myvalue + "/" + json[1].myvalue2);
-    //        KK
             $.get(href, function(player,status){
                 $('.myForm #id').val(player.id);
                 $('.myForm #firstName').val(player.firstName);
@@ -54,18 +53,16 @@ $(function(){
     $('.table .dBtn').on('click', function(event){
         event.preventDefault();
         var href = $(this).attr('href');
-
-        console.log($(this).data('valuejson'));
-        console.log($(this).attr('data-valuejson'));
-        console.log($(this).data('valuejson').firstName);
-
-        var kk = JSON.parse($(this).attr('data-valuejson'));
-        console.log(kk);
-        console.log("Attr: " + kk);
-        console.log("jsonAttr: " + kk.id + "/" + kk.firstName);
-
-        $('#itemToDelete').append("<p style='color:blue'>ID: " + $(this).data('valuejson').id + "</p>");
-        $('#itemToDelete').append("<p style='color:blue'>Name: " + $(this).data('valuejson').firstName + " " + $(this).data('valuejson').lastName + "</p>");
+//        console.log($(this).data('valuejson'));
+//        console.log($(this).attr('data-valuejson'));
+//        console.log($(this).data('valuejson').firstName);
+//        var kk = JSON.parse($(this).attr('data-valuejson'));
+//        console.log(kk);
+//        console.log("Attr: " + kk);
+//        console.log("jsonAttr: " + kk.id + "/" + kk.firstName);
+        $('#itemToDelete').empty();
+        $('#itemToDelete').append("<p style='color:blue; padding-left:3px'>ID: " + $(this).data('valuejson').id + "</p>");
+        $('#itemToDelete').append("<p style='color:blue; padding-left:3px'>Name: " + $(this).data('valuejson').firstName + " " + $(this).data('valuejson').lastName + "</p>");
         $('#deleteModal #delRef').attr('href', href);
         $('#deleteModal').modal();
     });
