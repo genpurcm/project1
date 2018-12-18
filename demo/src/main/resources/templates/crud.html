@@ -2,13 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>CRUD Page</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <script type="text/javascript" th:src="@{js/CRUD.js}" src="../static/js/CRUD.js"></script>
     <!--<scrip src="js/site.js"></scrip>-->
+
+    <style>
+        .pagination-centered {
+            text-align: center;
+        }
+        .disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        .pointer-disabled {
+            pointer-events: none;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -30,6 +44,8 @@
                             <th>Last Name</th>
                             <th>Email Address</th>
                             <th>Birthday</th>
+                            <!--<th>PageSize</th>-->
+                            <!--<th>TotalElements</th>-->
                         </tr>
                     </thead>
                     <tbody id="table_body">
@@ -40,20 +56,54 @@
                             <td th:text="${player.lastName}"></td>
                             <td th:text="${player.emailAddress}"></td>
                             <td th:text="${player.birthday}"></td>
-                            <td><a th:href="@{delete/(Id=${player.id})}" th:value="${iterator.index + 1}" data-valuejson='{"id": "${player.id}", "firstName": "player.firstName", "lastName": "player.lastName"}' class="btn btn-danger dBtn">Delete</a></td>
-                            <td><a th:href="@{findById/(Id=${player.id})}" th:value="${iterator.index + 1}" data-valuejson='[{"myvalue": 1, "myvalue2": "A"}, {"myvalue": 2, "myvalue2": "B"}]' class="btn btn-primary eBtn">Edit</a></td>
+                            <!--<td th:text="${data.pageable.pageSize}"></td>-->
+                            <!--<td th:text="${data.totalElements}"></td>-->
+                            <td><a th:href="@{delete/(Id=${player.id})}" th:value="${iterator.index + 1}" data-valuejson='{"id": "${#player.id}", "firstName": "${player.firstName}", "lastName": "player.lastName"}' class="btn btn-danger dBtn">Delete</a></td>
+                            <td><a th:href="@{findById(Id=${player.id})}" th:value="${iterator.index + 1}" data-valuejson='[{"myvalue": 1, "myvalue2": "A"}, {"myvalue": 2, "myvalue2": "B"}]' class="btn btn-primary eBtn">Edit</a></td>
                         </tr>
                     </tbody>
                 </table>
                 <hr/>
 
-                <ul class="nav nav-pills">
-                    <li class="nav-item" th:each="i : ${#numbers.sequence(0, data.totalPages-1)}">
-                        <a th:href="@{''(page=${i})}" th:text="${i}" class="nav-link"
-                        th:classappend="${currentPage}==${i}?'active':''"></a>
-                    </li>
-                </ul>
+                <div class="row">
+                    <div class="form-group col-md-1">
+                        <select class="form-control pagination" id="pageSizeSelect" style="width: 64px;padding-left: 1px;border-left-width: 1px;margin-left: 4px;padding-right: 1px;">
+                            <option th:each="pageSize : ${#numbers.sequence(5, 10)}" th:text="${pageSize}"
+                                    th:value="${pageSize}"
+                                    th:selected="${pageSize} == ${currentSize}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3 justify-content-center">
+                        <p th:text="|Page ${data.number + 1} of ${data.totalPages}|">KK</p>
+                    </div>
 
+                    <div th:if="${data.totalPages != 1}" class="form-group col-md-8" style="padding-right:22px; padding-left:22px;">
+                        <ul class="nav nav-pills pagination justify-content-end">
+                            <li th:class="${data.number == 0} ? disabled">
+                                <a class="pageLink"
+                                th:href="@{''(page=0, size=${currentSize})}">«</a>
+                            </li>
+                            <li th:class="${data.number == 0} ? disabled">
+                                <a class="pageLink"
+                                th:href="@{''(page=${data.number - 1}, size=${currentSize})}">←</a>
+                            </li>
+                            <li class="nav nav-pills" th:each="i : ${#numbers.sequence(0, data.totalPages-1)}">
+                                <a th:href="@{''(page=${i}, size=${currentSize})}"
+                                th:text="${i+1}" class="nav-link"
+                                th:classappend="${currentPage}==${i}?'active':''"></a>
+                            </li>
+                            <li th:class="${data.number + 1 == data.totalPages} ? disabled">
+                                <a class="pageLink"
+                                th:href="@{''(page=${data.number + 1}, size=${currentSize})}">→</a>
+                            </li>
+                            <li th:class="${data.number + 1 == data.totalPages} ? disabled">
+                                <a class="pageLink"
+                                th:href="@{''(page=${data.totalPages -1}, size=${currentSize})}">»</a>
+                            </li>
+                        </ul>
+                   </div>
+                </div>
             </div>
         </div>
 
@@ -63,7 +113,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Update or Create</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Update / Create</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -71,7 +121,7 @@
                         <div class="modal-body">
                                 <div class="form-group">
                                     <label for="Nro" class="col-form-label">Nro:</label>
-                                    <input type="text" class="form-control" id="Nro" name="Nro" value="" disabled="disabled"/>
+                                    <input type="text" class="form-control" id="Nro" name="Nro" value="" />
                                 </div>
                                 <div class="form-group">
                                     <label for="id" class="col-form-label">ID:</label>
@@ -128,5 +178,6 @@
         </div>
 
     </div>
+
 </body>
 </html>

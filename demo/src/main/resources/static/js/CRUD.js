@@ -8,8 +8,10 @@ $(function(){
         if (text == 'Edit'){
             $('#save-createBtn').val("Save").removeClass( "btn-success" ).addClass( "btn-primary" );
             $('.form-group #Nro').parent().closest('div').css('display', 'block');
+            $('.form-group #Nro').prop("disabled", true);
             $('.form-group #id').parent().closest('div').show();
-            $('.form-group #id').prop("disabled", true);
+//            $('.form-group #id').prop("disabled", true);
+            $('.form-group #id').prop("readonly", true);
             $('.myForm #Nro').val($(this).attr('value'));
     //        ****** TEST JSON PROCESSING ******
     //        console.log($(this).data('valuejson'));
@@ -25,7 +27,7 @@ $(function(){
     //        console.log(json);
     //        console.log("Data: " + json);
     //        console.log("jsonData: " + json[0].myvalue + "/" + json[1].myvalue2);
-
+    //        KK
             $.get(href, function(player,status){
                 $('.myForm #id').val(player.id);
                 $('.myForm #firstName').val(player.firstName);
@@ -35,6 +37,8 @@ $(function(){
             });
             $('.myForm #exampleModal').modal();
         }else{
+            $('.form-group #Nro').prop("disabled", true);
+            $('.form-group #id').prop("disabled", true);
             $('.myForm #firstName').val('');
             $('.myForm #lastName').val('');
             $('.myForm #emailAddress').val('');
@@ -64,6 +68,15 @@ $(function(){
         $('#itemToDelete').append("<p style='color:blue'>Name: " + $(this).data('valuejson').firstName + " " + $(this).data('valuejson').lastName + "</p>");
         $('#deleteModal #delRef').attr('href', href);
         $('#deleteModal').modal();
+    });
+});
+
+$(function(){
+    $('#pageSizeSelect').change(function(evt){
+            console.log(window.location);
+            console.log(this.value);
+            console.log("Working");
+            window.location.replace("?page=0&size=" + this.value);
     });
 });
 
