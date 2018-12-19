@@ -50,15 +50,12 @@
                     </thead>
                     <tbody id="table_body">
                         <tr th:each="player, iterator:${data.content}">
-                            <td th:text="${iterator.count}"></td>
-                            <!--<td th:text="${iterator.index + 1}"></td>-->
+                            <td th:text="${iterator.count + data.Number * data.Size}"></td>
                             <td th:text="${player.id}"></td>
                             <td th:text="${player.firstName}"></td>
                             <td th:text="${player.lastName}"></td>
                             <td th:text="${player.emailAddress}"></td>
                             <td th:text="${player.birthday}"></td>
-                            <!--<td th:text="${data.pageable.pageSize}"></td>-->
-                            <!--<td th:text="${data.totalElements}"></td>-->
                             <td><a th:href="@{delete/(Id=${player.id})}" th:value="${iterator.index + 1}" th:attr="data-valuejson='{&quot;id&quot;: &quot;'+${player.id}+'&quot;, &quot;firstName&quot;: &quot;'+${player.firstName}+'&quot; , &quot;lastName&quot;: &quot;'+${player.lastName}+'&quot;}'" class="btn btn-danger dBtn">Delete</a></td>
                             <!--<td><a th:href="@{delete/(Id=${player.id})}" th:value="${iterator.index + 1}" data-valuejson='{"id": "${#player.id}", "firstName": "${player.firstName}", "lastName": "player.lastName"}' class="btn btn-danger dBtn">Delete</a></td>-->
                             <td><a th:href="@{findById(Id=${player.id})}" th:value="${iterator.index + 1}" data-valuejson='[{"myvalue": 1, "myvalue2": "A"}, {"myvalue": 2, "myvalue2": "B"}]' class="btn btn-primary eBtn">Edit</a></td>
