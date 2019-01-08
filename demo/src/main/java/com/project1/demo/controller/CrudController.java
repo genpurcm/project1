@@ -45,3 +45,16 @@ public class CrudController {
         return crudRepository.findById(Id);
     }
 }
+
+
+//    private PageRequest gotoPage(int page)
+//    {
+//        PageRequest request = new PageRequest(page,1,Sort.Direction.ASC,"country");
+//        return request;
+//    }
+
+//    @Query("select p from Person p where p.country like ?1 order by country")
+//    List<Person> findByCountryContains(String country);
+//    List<Person> findPersonByHobbyName(String name);
+//    @Query("select p from Person p where p.id = ?1 and  country='America'")
+//    Person findOne(Long id);
