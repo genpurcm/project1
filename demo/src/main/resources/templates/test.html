@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TEST</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" th:src="@{js/CRUD.js}" src="../static/js/CRUD.js"></script>
+
+
+
+  <style>
+  body {
+    <!--padding-top:120px;-->
+      <!--position: relative;-->
+      <!--background-color:black;-->
+    overflow-y: hidden;
+  }
+
+  @media screen and (max-width: 567px) {
+    #myScrollspy {
+      background: yellow !important;
+      position: fixed-top;
+    }
+    body {background: red;
+    }
+  }
+
+  <!--.col-12 div {-->
+    <!--&lt;!&ndash;height: 500px;&ndash;&gt;-->
+    <!--height: responsive;-->
+    <!--position:relative;-->
+    <!--padding-top: 8px;-->
+  <!--}-->
+
+  <!--.col-12 {-->
+    <!--padding-top:8px;-->
+  <!--}-->
+  ul.nav-pills {
+    <!--top: relative;-->
+    <!--width:100%;-->
+    <!--position: fixed;-->
+  }
+
+  a.nav-link {
+    padding-right:4px;
+    padding-left:4px;
+  }
+
+  #section1 {color: #fff; background-color: #1E88E5; padding-right:4px; padding-left:8px;}
+  #section2 {color: #fff; background-color: #673ab7; padding-right:4px; padding-left:8px;}
+  #section3 {color: #fff; background-color: #ff9800; padding-right:4px; padding-left:8px;}
+  #section41 {color: #fff; background-color: #00bcd4; padding-right:4px; padding-left:8px;}
+  #section42 {color: #fff; background-color: #009688; padding-right:4px; padding-left:8px;}
+
+  .sticky-offset {
+    <!--top: 100px;-->
+    top:20px;
+  }
+
+  .kk .item1 {
+    height:45%;
+    position:relative;
+    top:0%;
+    background:pink;
+  }
+
+  .kk .item2 {
+    height:45%;
+    position:relative;
+    top:10%;
+    background:green;
+  }
+
+  #myScrollspy {
+    z-index: 1025;
+  }
+
+  </style>
+</head>
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
+
+<div class="container-fluid responsive-height">
+    <div class="row" style="padding:2px 1px 2px 1px;">
+
+        <div class="col-sm-10 col-lg-11" style="position:relative;z-index:1;padding-right:1px;padding-left:1px;">
+
+            <div id="section41" class="bg-danger card sticky-top" style="margin:1px;">
+                    <h1>Section 4-1</h1>
+                    <!--<input type="button" id="GetPlayerListS41" value="Get Players S41">-->
+                        <div class="container">
+                            <div id="added_items41" th:fragment="resultsList" >
+                                <!--style="display:none"-->
+                                <!--th:unless="${#lists.isEmpty(guests)}-->
+                                <!--<input type="button" id="GetPlayerListS41" value="Get Players S41">-->
+                                <table id="table41">
+                                    <thead>
+                                    <tr>
+                                        <th>Nro</th>
+                                        <th>ID</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email Address</th>
+                                        <th>Birthday</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="table_body41">
+                                    <tr th:each="player, iterator:${data.content}">
+                                        <td th:text="${iterator.count + data.Number * data.Size}"></td>
+                                        <td th:text="${player.id}"></td>
+                                        <td th:text="${player.firstName}"></td>
+                                        <td th:text="${player.lastName}"></td>
+                                        <td th:text="${player.emailAddress}"></td>
+                                        <td th:text="${player.birthday}"></td>
+                                        <td><a th:href="@{delete/(Id=${player.id})}" th:value="${iterator.index + 1}" th:attr="data-valuejson='{&quot;id&quot;: &quot;'+${player.id}+'&quot;, &quot;firstName&quot;: &quot;'+${player.firstName}+'&quot; , &quot;lastName&quot;: &quot;'+${player.lastName}+'&quot;}'" class="btn btn-danger dBtn">Delete</a></td>
+                                        <!--<td><a th:href="@{delete/(Id=${player.id})}" th:value="${iterator.index + 1}" data-valuejson='{"id": "${#player.id}", "firstName": "${player.firstName}", "lastName": "player.lastName"}' class="btn btn-danger dBtn">Delete</a></td>-->
+                                        <td><a th:href="@{findById(Id=${player.id})}" th:value="${iterator.index + 1}" data-valuejson='[{"myvalue": 1, "myvalue2": "A"}, {"myvalue": 2, "myvalue2": "B"}]' class="btn btn-primary eBtn">Edit</a></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <hr/>
+
+                                <div class="row">
+                                    <div class="form-group col-md-1">
+                                        <select class="form-control pagination" id="pageSizeSelect" style="width: 64px;padding-left: 1px;border-left-width: 1px;margin-left: 4px;padding-right: 1px;">
+                                            <option th:each="pageSize : ${#numbers.sequence(5, 10)}" th:text="${pageSize}"
+                                                    th:value="${pageSize}"
+                                                    th:selected="${pageSize} == ${currentSize}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3 justify-content-center">
+                                        <p th:text="|Page ${data.number + 1} of ${data.totalPages}|"></p>
+                                    </div>
+
+                                    <div th:if="${data.totalPages != 1}" class="form-group col-md-8" style="padding-right:22px; padding-left:22px;">
+                                        <ul class="nav nav-pills pagination justify-content-end">
+                                            <li th:class="${data.number == 0} ? disabled">
+                                                <a class="pageLink"
+                                                   th:href="@{''(page=0, size=${currentSize})}">«</a>
+                                            </li>
+                                            <li th:class="${data.number == 0} ? disabled">
+                                                <a class="pageLink"
+                                                   th:href="@{''(page=${data.number - 1}, size=${currentSize})}">←</a>
+                                            </li>
+                                            <li class="nav nav-pills" th:each="i : ${#numbers.sequence(0, data.totalPages-1)}">
+                                                <a th:href="@{''(page=${i}, size=${currentSize})}"
+                                                   th:text="${i+1}" class="nav-link"
+                                                   th:classappend="${currentPage}==${i}?'active':''"></a>
+                                            </li>
+                                            <li th:class="${data.number + 1 == data.totalPages} ? disabled">
+                                                <a class="pageLink"
+                                                   th:href="@{''(page=${data.number + 1}, size=${currentSize})}">→</a>
+                                            </li>
+                                            <li th:class="${data.number + 1 == data.totalPages} ? disabled">
+                                                <a class="pageLink"
+                                                   th:href="@{''(page=${data.totalPages -1}, size=${currentSize})}">»</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                        </div>
+                        </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="js/site.js"></script>
+<script src="js/API-Requests.js"></script>
+<script th:inline="javascript">
+    $('#GetPlayerListS41').on("click", function(){
+    $.ajax({
+        type: 'GET',
+        <!--contentType: "application/json",-->
+        <!--dataType: "json",-->
+        url: "/test",
+        async:true,
+    }).done(function(data, textStatus, jqXHR){
+            console.log("GetPlayerListS41 Button Success");
+            console.log(data);
+            <!--console.log(currentPage);-->
+            console.log(textStatus);
+            console.log(jqXHR);
+            <!--if (textStatus == "success"){-->
+                <!--$.each(data.content, function(idx, item){-->
+                <!--$("#table_body41").append("<tr><td>" + idx + "</td><td>" + item.id + "</td><td>" + item.firstName + "</td><td>" + item.lastName + "</td><td>" + item.emailAddress + "</td><td>" + item.birthday + "</td></tr>")-->
+                <!--});-->
+                <!--$('#added_items41').show("slow");-->
+                <!--$('#table41').on('load', data);-->
+            <!--} else {-->
+                <!--alert("GetPlayerListS41 Button No Success");-->
+            <!--};-->
+        }).fail(function( jqXHR, textStatus, errorThrown){
+             console.log("The error thrown by GetPlayerListS41 is: " + errorThrown);
+        });
+});
+
+
+</script>
+</body>
+</html>

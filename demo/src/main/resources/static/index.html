@@ -209,9 +209,12 @@
             </div>
             <div id="section41" class="bg-danger card sticky-top" style="margin:1px;">
                     <h1>Section 4-1</h1>
-                    <input type="button" id="GetPlayerListS41" value="Get Players S41">
+                    <!--<input type="button" id="GetPlayerListS41" value="Get Players S41">-->
                         <div class="container">
-                            <div id="added_items41" style="display:none">
+                            <div id="added_items41" th:fragment="resultsList" >
+                                <!--style="display:none"-->
+                                <!--th:unless="${#lists.isEmpty(guests)}-->
+                                <input type="button" id="GetPlayerListS41" value="Get Players S41">
                                 <table id="table41">
                                     <thead>
                                     <tr>
@@ -309,22 +312,23 @@
         type: 'GET',
         <!--contentType: "application/json",-->
         <!--dataType: "json",-->
-        url: "/players411",
+        url: "/players4111",
         async:true,
     }).done(function(data, textStatus, jqXHR){
             console.log("GetPlayerListS41 Button Success");
             console.log(data);
+            <!--console.log(currentPage);-->
             console.log(textStatus);
             console.log(jqXHR);
-            if (textStatus == "success"){
-                $.each(data.content, function(idx, item){
-                $("#table_body41").append("<tr><td>" + idx + "</td><td>" + item.id + "</td><td>" + item.firstName + "</td><td>" + item.lastName + "</td><td>" + item.emailAddress + "</td><td>" + item.birthday + "</td></tr>")
-                });
-                $('#added_items41').show("slow");
-                $('#table41').on('load', data);
-            } else {
-                alert("GetPlayerListS41 Button No Success");
-            };
+            <!--if (textStatus == "success"){-->
+                <!--$.each(data.content, function(idx, item){-->
+                <!--$("#table_body41").append("<tr><td>" + idx + "</td><td>" + item.id + "</td><td>" + item.firstName + "</td><td>" + item.lastName + "</td><td>" + item.emailAddress + "</td><td>" + item.birthday + "</td></tr>")-->
+                <!--});-->
+                <!--$('#added_items41').show("slow");-->
+                <!--$('#table41').on('load', data);-->
+            <!--} else {-->
+                <!--alert("GetPlayerListS41 Button No Success");-->
+            <!--};-->
         }).fail(function( jqXHR, textStatus, errorThrown){
              console.log("The error thrown by GetPlayerListS41 is: " + errorThrown);
         });
