@@ -140,6 +140,7 @@
                         <div class="container">
                             <div class="page-header">
                                 <h1>Welcome to the TEST Reservations Page</h1>
+                                <p th:text="${indexcontroller}"></p>
                             </div>
                             <div class="input-group">
                                 <span class=".input-group-addon" id="basic-addon1"><span class="fas fa-calendar-alt" style="color:black;margin:0px 5px;text-align:center;"></span></span>
@@ -239,7 +240,7 @@
                                 </table>
 
                                 <div class="row">
-                                    <div class="form-group col-md-1">
+                                    <div th:if="${data.model.currentSize != null}" class="form-group col-md-1">
                                         <select class="form-control pagination" id="pageSizeSelect" style="width: 64px;padding-left: 1px;border-left-width: 1px;margin-left: 4px;padding-right: 1px;">
                                             <option th:each="pageSize : ${#numbers.sequence(5, 10)}" th:text="${pageSize}"
                                                     th:value="${pageSize}"

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Error in Static</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><title>Error Occurred</title></head>
 <body>
-    <h1>Oppps, it seems there was an error!!!!</h1>
-    <h2>Our Engineers are on it</h2>
-    <a style='alerted' href="/">Go Home</a>
+<h1>Error Occurred!</h1>
+<h2>Our Engineers are working on it!</h2>
+<b>[<span th:text="|The status code is: ${status}|">status</span>]
+    <span th:text="${error}">error</span>
+</b>
+<p th:text="|The error is: ${message}|">message</p>
 </body>
 </html>

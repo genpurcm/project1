@@ -1,4 +1,4 @@
-//package com.project1.demo;
+package com.project1.demo.config;//package com.project1.demo;
 //
 ////import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 //import org.springframework.beans.factory.annotation.Autowired;

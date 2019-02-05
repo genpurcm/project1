@@ -1,23 +1,24 @@
 package com.project1.demo.data.entity;
 
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="PLAYER")
 public class Player {
-    @Id
+//    @Id
     @Column(name = "PLAYER_ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "FIRSTNAME")
     private String firstName;
     @Column(name = "LASTNAME")
     private String lastName;
+    @Id
     @Column(name = "EMAILADDRESS")
     private String emailAddress;
     @Column(name = "TEAM")
@@ -37,8 +38,22 @@ public class Player {
     private String nationality;
     @Column(name = "NAMEFIELD")
     private String namefield;
+//    @NotEmpty (message = "The above field must not be blank.")
+//    @Size(min = 5, message = "{password.size}")
+    @Column(name = "PASSWORD")
+    private String password;
 
-    public Player(long id, String firstName, String lastName, String emailAddress, String team, double number, String position, LocalDate birthday, double weight, double height, String nationality, String namefield) {
+//    @NotEmpty
+    @ManyToMany (cascade = CascadeType.ALL)
+    @JoinTable (name = "USER_ROLES", joinColumns = {
+            @JoinColumn(name="USER_EMAILADDRESS", referencedColumnName = "EMAILADDRESS")
+    }, inverseJoinColumns = {@JoinColumn(name="ROLE_ROLENAME", referencedColumnName = "ROLENAME")})
+//    @Column(name = "ROLES", nullable = false)
+    @Column(name = "ROLES")
+    private List<Role> roles;
+
+
+    public Player(long id, String firstName, String lastName, String emailAddress, String team, double number, String position, LocalDate birthday, double weight, double height, String nationality, String namefield, String password, List<Role> roles) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -51,6 +66,8 @@ public class Player {
         this.height = height;
         this.nationality = nationality;
         this.namefield = namefield;
+        this.password = password;
+        this.roles = roles;
     }
 
     public Player() {
@@ -151,5 +168,21 @@ public class Player {
 
     public void setNamefield(String namefield) {
         this.namefield = namefield;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+</head>
+<body>
+
+
+<div th:fragment="footer">
+    <div class="container">
+        <footer>
+            <!-- this is footer -->
+            © 2019 MRC.com
+            <span sec:authorize="isAuthenticated()">
+                | Logged user: <span sec:authentication="name"></span> |
+                Roles: <span sec:authentication="principal.authorities"></span> |
+                <a th:href="@{/logout}">Sign Out</a>
+            </span>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script type="text/javascript"
+                    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>-->
+        </footer>
+    </div>
+</div>
+
+<div th:fragment="footer2">
+    <div class="container">
+        <footer2>
+        <!-- this is footer -->
+        © 2019 MRC2.com
+        <span sec:authorize="isAuthenticated()">
+                | Logged user2: <span sec:authentication="name"></span> |
+                Roles2: <span sec:authentication="principal.authorities"></span> |
+                <a th:href="@{/logout}">Sign Out2</a>
+            </span>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript"
+                src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>-->
+        </footer2>
+    </div>
+</div>
+</body>
+</html>
