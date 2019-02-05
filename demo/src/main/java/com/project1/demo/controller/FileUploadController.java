@@ -1,6 +1,7 @@
 package com.project1.demo.controller;
 
 import com.project1.demo.data.entity.Player;
+import com.project1.demo.data.entity.Role;
 import com.project1.demo.payload.UploadFileResponse;
 import com.project1.demo.service.PlayerService;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -48,18 +49,25 @@ public class FileUploadController {
                 tempPlayer.setEmailAddress(row.getCell(2).getStringCellValue());
                 tempPlayer.setTeam(row.getCell(3).getStringCellValue());
                 tempPlayer.setNumber(row.getCell(4).getNumericCellValue());
-//                tempPlayer.setPosition(row.getCell(5).getStringCellValue());
-
-                Date date = row.getCell(6).getDateCellValue();
-                LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                int year  = localDate.getYear();
-                int month = localDate.getMonthValue();
-                int day   = localDate.getDayOfMonth();
+                tempPlayer.setPosition(row.getCell(5).getStringCellValue());
+                    Date date = row.getCell(6).getDateCellValue();
+                    LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    int year  = localDate.getYear();
+                    int month = localDate.getMonthValue();
+                    int day   = localDate.getDayOfMonth();
                 tempPlayer.setBirthday(localDate);
 //                tempPlayer.setBirthday(row.getCell(6).getDateCellValue());
                 tempPlayer.setWeight(row.getCell(7).getNumericCellValue());
                 tempPlayer.setHeight(row.getCell(8).getNumericCellValue());
                 tempPlayer.setNationality(row.getCell(9).getStringCellValue());
+                tempPlayer.setPassword(row.getCell(10).getStringCellValue());
+
+                Role userRole = new Role(row.getCell(11).getStringCellValue());
+                List<Role> roles = new ArrayList<>();
+                roles.add(userRole);
+                tempPlayer.setRoles(roles);
+//                playerRepository.save(player);
+//                tempPlayer.setRoles(row.getCell(11).getStringCellValue());
                 tempPlayer.setNamefield(nameField);
                 System.out.println("Lamda forEach Loop");
 
