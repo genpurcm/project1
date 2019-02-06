@@ -47,9 +47,9 @@ public class FileUploadController {
                 tempPlayer.setFirstName(row.getCell(0).getStringCellValue());
                 tempPlayer.setLastName(row.getCell(1).getStringCellValue());
                 tempPlayer.setEmailAddress(row.getCell(2).getStringCellValue());
-                tempPlayer.setTeam(row.getCell(3).getStringCellValue());
-                tempPlayer.setNumber(row.getCell(4).getNumericCellValue());
-                tempPlayer.setPosition(row.getCell(5).getStringCellValue());
+                tempPlayer.setTeam(row.getCell(3, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getStringCellValue());
+                tempPlayer.setNumber(row.getCell(4, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getNumericCellValue());
+                tempPlayer.setPosition(row.getCell(5, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getStringCellValue());
                     Date date = row.getCell(6).getDateCellValue();
                     LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     int year  = localDate.getYear();
@@ -57,12 +57,12 @@ public class FileUploadController {
                     int day   = localDate.getDayOfMonth();
                 tempPlayer.setBirthday(localDate);
 //                tempPlayer.setBirthday(row.getCell(6).getDateCellValue());
-                tempPlayer.setWeight(row.getCell(7).getNumericCellValue());
-                tempPlayer.setHeight(row.getCell(8).getNumericCellValue());
-                tempPlayer.setNationality(row.getCell(9).getStringCellValue());
+                tempPlayer.setWeight(row.getCell(7, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getNumericCellValue());
+                tempPlayer.setHeight(row.getCell(8, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getNumericCellValue());
+                tempPlayer.setNationality(row.getCell(9, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getStringCellValue());
                 tempPlayer.setPassword(row.getCell(10).getStringCellValue());
 
-                Role userRole = new Role(row.getCell(11).getStringCellValue());
+                Role userRole = new Role(row.getCell(11, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getStringCellValue());
                 List<Role> roles = new ArrayList<>();
                 roles.add(userRole);
                 tempPlayer.setRoles(roles);
@@ -139,6 +139,9 @@ public class FileUploadController {
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("IOException Handler: "+ e.getMessage());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            System.out.println("NullPointerException Handler: "+ e.getMessage() + "Seems that a cell is empty/blank");
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Exception Handler: "+ e.getMessage());
