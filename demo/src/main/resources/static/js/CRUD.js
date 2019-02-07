@@ -28,7 +28,7 @@ $(function(){
     //        console.log("Data: " + json);
     //        console.log("jsonData: " + json[0].myvalue + "/" + json[1].myvalue2);
             $.get(href, function(player,status){
-                $('.myForm #id').val(player.id);
+//                $('.myForm #id').val(player.id);
                 $('.myForm #firstName').val(player.firstName);
                 $('.myForm #lastName').val(player.lastName);
                 $('.myForm #emailAddress').val(player.emailAddress);
@@ -37,7 +37,7 @@ $(function(){
             $('.myForm #exampleModal').modal();
         }else{
             $('.form-group #Nro').prop("disabled", true);
-            $('.form-group #id').prop("disabled", true);
+//            $('.form-group #id').prop("disabled", true);
             $('.myForm #firstName').val('');
             $('.myForm #lastName').val('');
             $('.myForm #emailAddress').val('');
@@ -46,7 +46,7 @@ $(function(){
             $('#save-createBtn').val("Create").removeClass( "btn-primary" ).addClass( "btn-success" );
 //            $('#save-createBtn').val("Create").toggleClass("btn-primary btn-success");
             $('.form-group #Nro').parent().closest('div').css('display', 'none');
-            $('.form-group #id').parent().closest('div').hide();
+//            $('.form-group #id').parent().closest('div').hide();
         }
     });
 
@@ -61,7 +61,7 @@ $(function(){
 //        console.log("Attr: " + kk);
 //        console.log("jsonAttr: " + kk.id + "/" + kk.firstName);
         $('#itemToDelete').empty();
-        $('#itemToDelete').append("<p style='color:blue; padding-left:3px'>ID: " + $(this).data('valuejson').id + "</p>");
+        $('#itemToDelete').append("<p style='color:blue; padding-left:3px'>ID: " + $(this).data('valuejson').emailAddress + "</p>");
         $('#itemToDelete').append("<p style='color:blue; padding-left:3px'>Name: " + $(this).data('valuejson').firstName + " " + $(this).data('valuejson').lastName + "</p>");
         $('#deleteModal #delRef').attr('href', href);
         $('#deleteModal').modal();

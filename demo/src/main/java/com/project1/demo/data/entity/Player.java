@@ -11,16 +11,16 @@ import java.util.List;
 @Table(name="PLAYER")
 public class Player {
 //    @Id
-    @Column(name = "PLAYER_ID")
+//    @Column(name = "PLAYER_ID")
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+//    private long id;
+    @Id
+    @Column(name = "EMAILADDRESS")
+    private String emailAddress;
     @Column(name = "FIRSTNAME")
     private String firstName;
     @Column(name = "LASTNAME")
     private String lastName;
-    @Id
-    @Column(name = "EMAILADDRESS")
-    private String emailAddress;
     @Column(name = "TEAM")
     private String team;
     @Column(name = "NUMBER")
@@ -53,8 +53,8 @@ public class Player {
     private List<Role> roles;
 
 
-    public Player(long id, String firstName, String lastName, String emailAddress, String team, double number, String position, LocalDate birthday, double weight, double height, String nationality, String namefield, String password, List<Role> roles) {
-        this.id = id;
+    public Player(String firstName, String lastName, String emailAddress, String team, double number, String position, LocalDate birthday, double weight, double height, String nationality, String namefield, String password, List<Role> roles) {
+//        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
@@ -74,13 +74,13 @@ public class Player {
 
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
+//    public long getId() {
+//        return id;
+//    }
+//
+//    public void setId(long id) {
+//        this.id = id;
+//    }
 
     public String getFirstName() {
         return firstName;

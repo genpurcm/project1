@@ -34,14 +34,21 @@ public class CrudController {
     }
 
     @GetMapping("/delete")
-    public String delete(Long Id){
+    public String delete(String Id){
         crudRepository.deleteById(Id);
         return "redirect:/crud";
     }
 
+//    @GetMapping("/findById")
+//    @ResponseBody
+//    public Optional<Player> findById(Long Id){
+//        return crudRepository.findById(Id);
+//    }
+//}
+
     @GetMapping("/findById")
     @ResponseBody
-    public Optional<Player> findById(Long Id){
+    public Optional<Player> findById(String Id){
         return crudRepository.findById(Id);
     }
 }

@@ -20,6 +20,9 @@ public class DefaultController {
     @GetMapping("/")
 //    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showIndexPage(ModelMap model) {
+        SecurityContext context = SecurityContextHolder.getContext();
+        model.addAttribute("message", "You are logged in as "
+                + context.getAuthentication().getName());
         model.put("indexcontroller", this.message);
         return "/index";
     }
@@ -64,15 +67,6 @@ public class DefaultController {
         return "/indexori";
     }
 
-    @GetMapping("/index2")
-    public String index(ModelMap model) {
-        // Get authenticated user name from SecurityContext
-        SecurityContext context = SecurityContextHolder.getContext();
-        model.addAttribute("message", "You are logged in as "
-                + context.getAuthentication().getName());
-        model.put("indexcontroller", this.message);
-        return "/index2";
-    }
 
 
 }
