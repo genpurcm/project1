@@ -1,4 +1,4 @@
-    $('#GetPlayerListS41, #GetPlayerListtestA, #GetPlayerListS42').click(function(){
+    $('#GetUserListS41, #GetUserListtestA, #GetUserListS42').click(function(){
 //    console.log($(this).data("value"))
 //    console.log(this.id)
 //    console.log($(this).attr("id"))
@@ -9,13 +9,13 @@
     var dataValue = $(this).data("value")
 
     switch ($(this).val()){
-        case "Get Players testA":
+        case "Get Users testA":
             urlSelect = 'testA';
             break;
-        case "Get Players S41":
+        case "Get Users S41":
             urlSelect = 'S41';
             break;
-        case "Get Players S42":
+        case "Get Users S42":
             urlSelect = 'S42';
             break;
     }
@@ -24,7 +24,7 @@
         type: 'GET',
         <!--contentType: "application/json",-->
         <!--dataType: "json",-->
-        url: "/players41/test/" + urlSelect + "/kkita",
+        url: "/users41/test/" + urlSelect + "/kkita",
         async:true,
     }).done(function(data, textStatus, jqXHR){
             console.log("Inside DONE before IF " + dataValue);
@@ -34,7 +34,7 @@
             console.log(data.model);
             if (dataValue == "S42"){
                 console.log("Inside DONE Inside IF " + dataValue.slice(1,3));
-                $.each(data.dataPlayer.content, function(idx, item){
+                $.each(data.dataUser.content, function(idx, item){
                 $("#table_body" + dataValue.slice(1,3)).append("<tr><td>" + idx + "</td><td>" + item.firstName + "</td><td>" + item.lastName + "</td><td>" + item.emailAddress + "</td><td>" + item.birthday + "</td></tr>")
                 });
                 $("#added_items" + dataValue.slice(1,3)).show("slow");

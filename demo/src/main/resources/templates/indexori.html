@@ -122,15 +122,15 @@
             <div class="kk sticky-top" style="height:100vh;margin:1px;">
                 <div class="item1 sticky card text-center" style="padding:10px 4px 4px 4px;">
                     <a href="/UploadFile.html" target="_blank"><button>File Upload</button></a>
-                    <button onclick="window.open('/PlayerList.html')">Player List</button>
-                    <form role="search" method="get" action="/players" target="_blank">
-                        <button type="submit">Form Players</button>
+                    <button onclick="window.open('/UserList.html')">USER List</button>
+                    <form role="search" method="get" action="/users" target="_blank">
+                        <button type="submit">Form Users</button>
                     </form>
 
-                    <input type="button" onClick="GetPlayerList()" value="Get Players S2">
-                    <input type="button" id="GetPlayerListS3" value="Get Players S3">
-                    <input type="button" id="GetPlayerListS42" value="Get Players S42" data-value="S42">
-                    <button onclick="window.open('/crud')">Player CRUD</button>
+                    <input type="button" onClick="GetUserList()" value="Get Users S2">
+                    <input type="button" id="GetUserListS3" value="Get Users S3">
+                    <input type="button" id="GetUserListS42" value="Get Users S42" data-value="S42">
+                    <button onclick="window.open('/crud')">USER CRUD</button>
                 </div>
             </div>
         </div>
@@ -212,7 +212,7 @@
             <div id="section41" class="bg-danger card sticky-top" style="margin:1px;">
                     <h1>Section 4-1</h1>
                         <div style="display: inline-block;text-align:center;">
-                            <input type="button" id="GetPlayerListS41" value="Get Players S41" data-value="S41">
+                            <input type="button" id="GetUserListS41" value="Get Users S41" data-value="S41">
                         </div>
                         <div class="container">
                             <div id="added_itemsS41" th:fragment="resultsList" >
@@ -251,7 +251,7 @@
                                         <!--</select>-->
                                     <!--</div>-->
                                     <!--<div class="form-group col-md-3 justify-content-center">-->
-                                        <!--<p th:text="|Page ${data.dataPlayer.number + 1} of ${data.dataPlayer.totalPages}|"></p>-->
+                                        <!--<p th:text="|Page ${data.dataUser.number + 1} of ${data.dataPlayer.totalPages}|"></p>-->
                                     <!--</div>-->
 
                                     <!--<div th:if="${data.dataPlayer.totalPages != 1}" class="form-group col-md-8" style="padding-right:22px; padding-left:22px;">-->
@@ -302,7 +302,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="../../js/site.js"></script>
 <script src="../../js/API-Requests.js"></script>
-<script src="../../js/Player41.js"></script>
+<script src="../../js/User4X.js"></script>
 
 
 

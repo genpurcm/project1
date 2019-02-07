@@ -1,7 +1,7 @@
 package com.project1.demo.service;
 
-import com.project1.demo.data.entity.Player;
-import com.project1.demo.data.repository.PlayerRepository;
+import com.project1.demo.data.entity.User;
+import com.project1.demo.data.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -10,44 +10,44 @@ import org.springframework.stereotype.Service;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Service
-public class PlayerService {
+public class UserService {
 
     @Autowired
-    private PlayerRepository playerRepository;
+    private UserRepository userRepository;
 
-    public void AddPlayer(Player player){
+    public void AddPlayer(User user){
 //        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-//        player.setPassword(encoder.encode(player.getPassword()));
-        player.setPassword(new BCryptPasswordEncoder().encode(player.getPassword()));
-        System.out.println(player.getPassword());
-        playerRepository.save(player);
+//        user.setPassword(encoder.encode(user.getPassword()));
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        System.out.println(user.getPassword());
+        userRepository.save(user);
     }
-//    public void AddUser(Player player){
+//    public void AddUser(User player){
 //        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 //        player.setPassword(encoder.encode(player.getPassword()));
 //        Role userRole = new Role("USER");
 //        List<Role> roles = new ArrayList<>();
 //        roles.add(userRole);
 //        player.setRoles(roles);
-//        playerRepository.save(player);
+//        userRepository.save(player);
 //    }
-//    public void AddAdmin(Player player){
+//    public void AddAdmin(User player){
 //        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 //        player.setPassword(encoder.encode(player.getPassword()));
 //        Role userRole = new Role("ADMIN");
 //        List<Role> roles = new ArrayList<>();
 //        roles.add(userRole);
 //        player.setRoles(roles);
-//        playerRepository.save(player);
+//        userRepository.save(player);
 //    }
-    public Iterable<Player> getPlayers(){
-//        Iterable<Player> foundPlayers = playerRepository.findAll();
-        return playerRepository.findAll();
+    public Iterable<User> getPlayers(){
+//        Iterable<User> foundPlayers = userRepository.findAll();
+        return userRepository.findAll();
     }
 
 
-//    public Player GetPlayerByName(String name){
-//        playerRepository.findByName(String name);
+//    public User GetPlayerByName(String name){
+//        userRepository.findByName(String name);
 //    }
 
 

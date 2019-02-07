@@ -1,6 +1,6 @@
 package com.project1.demo.controller;
 
-import com.project1.demo.data.entity.Player;
+import com.project1.demo.data.entity.User;
 import com.project1.demo.data.repository.CrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -28,8 +28,8 @@ public class CrudController {
     }
 
     @PostMapping("/save")
-    public String save(Player player){
-        crudRepository.save(player);
+    public String save(User user){
+        crudRepository.save(user);
         return "redirect:/crud";
     }
 
@@ -39,16 +39,9 @@ public class CrudController {
         return "redirect:/crud";
     }
 
-//    @GetMapping("/findById")
-//    @ResponseBody
-//    public Optional<Player> findById(Long Id){
-//        return crudRepository.findById(Id);
-//    }
-//}
-
     @GetMapping("/findById")
     @ResponseBody
-    public Optional<Player> findById(String Id){
+    public Optional<User> findById(String Id){
         return crudRepository.findById(Id);
     }
 }

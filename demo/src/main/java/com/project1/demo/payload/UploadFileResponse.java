@@ -1,6 +1,6 @@
 package com.project1.demo.payload;
 
-import com.project1.demo.data.entity.Player;
+import com.project1.demo.data.entity.User;
 
 import java.util.List;
 
@@ -10,15 +10,15 @@ public class UploadFileResponse {
     private String fileType;
     private long size;
     private String nameField;
-    private List<Player> playerList;
+    private List<User> userList;
 
-    public UploadFileResponse(String fileName, String fileDownloadUri, String fileType, long size, String nameField, List<Player> playerList) {
+    public UploadFileResponse(String fileName, String fileDownloadUri, String fileType, long size, String nameField, List<User> userList) {
         this.fileName = fileName;
         this.fileDownloadUri = fileDownloadUri;
         this.fileType = fileType;
         this.size = size;
         this.nameField = nameField;
-        this.playerList = playerList;
+        this.userList = userList;
     }
 
     public String getFileName() {
@@ -61,11 +61,11 @@ public class UploadFileResponse {
         this.nameField = nameField;
     }
 
-    public List<Player> getPlayerList() {
-        return playerList;
+    public List<User> getUserList() {
+        return userList;
     }
 
-    public void setPlayerList(List<Player> playerList) {
-        this.playerList = playerList;
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 }

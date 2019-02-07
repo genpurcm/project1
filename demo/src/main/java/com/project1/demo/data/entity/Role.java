@@ -14,7 +14,7 @@ public class Role {
     private String name;
     @ManyToMany(mappedBy = "roles")
     @Column(name = "USERLIST")
-    private List<Player> players;
+    private List<User> users;
 
     public String getName() {
         return name;
@@ -24,17 +24,17 @@ public class Role {
         this.name = name;
     }
 
-    public List<Player> getPlayerList() {
-        return players;
+    public List<User> getPlayerList() {
+        return users;
     }
 
-    public void setPlayerList(List<Player> playerList) {
-        this.players = playerList;
+    public void setPlayerList(List<User> userList) {
+        this.users = userList;
     }
 
-    public Role(String name, List<Player> playerList) {
+    public Role(String name, List<User> userList) {
         this.name = name;
-        this.players = playerList;
+        this.users = userList;
     }
     public Role() {
     }

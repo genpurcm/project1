@@ -1,17 +1,18 @@
 package com.project1.demo.data.repository;
 
-import com.project1.demo.data.entity.Player;
+import com.project1.demo.data.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface PlayerRepository extends CrudRepository<Player, Long> {
-}
-
 //@Repository
-//public interface PlayerRepository extends PagingAndSortingRepository<Player, Long> {
+//public interface UserRepository extends CrudRepository<User, Long> {
 //}
+
+@RepositoryRestResource(exported = false)
+public interface UserRepository extends JpaRepository<User, Long> {
+}
 
 
 //    CrudRepository provides CRUD functions

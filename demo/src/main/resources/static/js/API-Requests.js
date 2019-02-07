@@ -1,10 +1,8 @@
-//import * as lib from './UploadForm.js';
-//import {dateFormat} from './UploadForm.js';
 
-function GetPlayerList() {
+function GetUserList() {
     var table_bodyX
     var added_itemsX
-    if ($('input:button').val() == 'Get Players'){
+    if ($('input:button').val() == 'Get Users'){
         table_bodyX = 'table_body';
         added_itemsX = 'added_items';
     }else{
@@ -15,7 +13,7 @@ function GetPlayerList() {
             type: 'GET',
     //        contentType: "application/json",
     //        dataType: "json",
-            url: "/players",
+            url: "/users",
     //        processData: false,
     //        contentType: false,
             success: function(data){
@@ -30,25 +28,25 @@ function GetPlayerList() {
 };
 //********************************change to click
 
-$('#GetPlayerListS3').on("click", function(){
+$('#GetUserListS3').on("click", function(){
     $.ajax({
         type: 'GET',
 //        contentType: "application/json",
 //        dataType: "json",
-        url: "/players2",
+        url: "/usersS3",
         async:true,
      }).done(function(data, textStatus, jqXHR){
-            console.log("GetPlayerListS3 Button Success");
+            console.log("GetUserListS3 Button Success");
             if (textStatus == "success"){
                 $.each(data.content, function(idx, item){
                     $("#table_body3").append("<tr><td>" + idx + "</td><td>" + item.firstName + "</td><td>" + item.lastName + "</td><td>" + item.emailAddress + "</td><td>" + item.birthday + "</td></tr>")
                 });
                 $('#added_items3').show("slow");
             } else {
-                alert("GetPlayerListS3 Button No Success");
+                alert("GetUserListS3 Button No Success");
             };
         }).fail(function( jqXHR, textStatus, errorThrown){
-             console.log("The error thrown by GetPlayerListS3 is: " + errorThrown);
+             console.log("The error thrown by GetUserListS3 is: " + errorThrown);
         });
 });
 
@@ -59,7 +57,7 @@ $('#Ajax2').on("click", function(){
         type: 'GET',
 //        contentType: "application/json",
 //        dataType: "json",
-        url: "/players",
+        url: "/users",
         async:true,
      }).done(function(data, textStatus, jqXHR){
             if (textStatus == "success"){

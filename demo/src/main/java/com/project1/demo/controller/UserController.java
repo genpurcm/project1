@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/users")
-public class PlayerController {
+public class UserController {
 
     @Autowired
     private UserService userService;
@@ -20,6 +20,5 @@ public class PlayerController {
         Iterable<User> PlayerList = this.userService.getPlayers();
 //        model.addAttribute("roomReservations", roomReservationList);
         return PlayerList;
-
     }
 }

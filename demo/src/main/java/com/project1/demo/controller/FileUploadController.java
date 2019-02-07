@@ -1,9 +1,9 @@
 package com.project1.demo.controller;
 
-import com.project1.demo.data.entity.Player;
+import com.project1.demo.data.entity.User;
 import com.project1.demo.data.entity.Role;
 import com.project1.demo.payload.UploadFileResponse;
-import com.project1.demo.service.PlayerService;
+import com.project1.demo.service.UserService;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.*;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -24,13 +23,12 @@ import java.util.*;
 public class FileUploadController {
 
     @Autowired
-    private PlayerService playerService;
+    private UserService userService;
 
     @PostMapping("/upload")
     public UploadFileResponse mapReapExcelDatatoDB(@RequestParam("nameField") String nameField, @RequestParam("file") MultipartFile ExcelDataFile) throws IOException, InvalidFormatException {
-        List<Player> tempPlayerList = new ArrayList<Player>();
+        List<User> tempUserList = new ArrayList<User>();
         try {
-
             XSSFWorkbook workbook = new XSSFWorkbook(ExcelDataFile.getInputStream());
             XSSFSheet worksheet = workbook.getSheet("Match");
 
@@ -42,48 +40,44 @@ public class FileUploadController {
                 if (row.getRowNum() == 0){
                     return; //Continues to the next code....
                 }
-                Player tempPlayer = new Player();
+                User tempUser = new User();
                 //            Iterator<Cell> cellsInRow = currentRow.iterator();
-                tempPlayer.setFirstName(row.getCell(0).getStringCellValue());
-                tempPlayer.setLastName(row.getCell(1).getStringCellValue());
-                tempPlayer.setEmailAddress(row.getCell(2).getStringCellValue());
-                tempPlayer.setTeam(row.getCell(3, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getStringCellValue());
-                tempPlayer.setNumber(row.getCell(4, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getNumericCellValue());
-                tempPlayer.setPosition(row.getCell(5, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getStringCellValue());
+                tempUser.setFirstName(row.getCell(0).getStringCellValue());
+                tempUser.setLastName(row.getCell(1).getStringCellValue());
+                tempUser.setEmailAddress(row.getCell(2).getStringCellValue());
+                tempUser.setTeam(row.getCell(3, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getStringCellValue());
+                tempUser.setNumber(row.getCell(4, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getNumericCellValue());
+                tempUser.setPosition(row.getCell(5, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getStringCellValue());
                     Date date = row.getCell(6).getDateCellValue();
                     LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                     int year  = localDate.getYear();
                     int month = localDate.getMonthValue();
                     int day   = localDate.getDayOfMonth();
-                tempPlayer.setBirthday(localDate);
-//                tempPlayer.setBirthday(row.getCell(6).getDateCellValue());
-                tempPlayer.setWeight(row.getCell(7, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getNumericCellValue());
-                tempPlayer.setHeight(row.getCell(8, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getNumericCellValue());
-                tempPlayer.setNationality(row.getCell(9, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getStringCellValue());
-                tempPlayer.setPassword(row.getCell(10).getStringCellValue());
-
+                tempUser.setBirthday(localDate);
+//                tempUser.setBirthday(row.getCell(6).getDateCellValue());
+                tempUser.setWeight(row.getCell(7, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getNumericCellValue());
+                tempUser.setHeight(row.getCell(8, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getNumericCellValue());
+                tempUser.setNationality(row.getCell(9, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getStringCellValue());
+                tempUser.setPassword(row.getCell(10).getStringCellValue());
                 Role userRole = new Role(row.getCell(11, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).getStringCellValue());
                 List<Role> roles = new ArrayList<>();
                 roles.add(userRole);
-                tempPlayer.setRoles(roles);
+                tempUser.setRoles(roles);
 //                playerRepository.save(player);
-//                tempPlayer.setRoles(row.getCell(11).getStringCellValue());
-                tempPlayer.setNamefield(nameField);
+//                tempUser.setRoles(row.getCell(11).getStringCellValue());
+                tempUser.setNamefield(nameField);
                 System.out.println("Lamda forEach Loop");
 
-                tempPlayerList.add(tempPlayer);
-
-                playerService.AddPlayer(tempPlayer);
-
+                tempUserList.add(tempUser);
+                userService.AddPlayer(tempUser);
             });
-
 
 //        while (rows.hasNext()){
 //            Row row = rows.next();
 ////            if (row.getRowNum() == 0){
 ////                continue;
 ////            }
-//            Player tempPlayer = new Player();
+//            User tempPlayer = new User();
 //            //            Iterator<Cell> cellsInRow = currentRow.iterator();
 //            tempPlayer.setFirst_Name(row.getCell(0).getStringCellValue());
 //            tempPlayer.setLast_Name(row.getCell(1).getStringCellValue());
@@ -98,16 +92,15 @@ public class FileUploadController {
 //            tempPlayer.setNamefield(nameField);
 //            System.out.println("While has next");
 //
-//            tempPlayerList.add(tempPlayer);
+//            tempUserList.add(tempPlayer);
 //
-//            playerService.AddPlayer(tempPlayer);
+//            userService.AddPlayer(tempPlayer);
 //        }
 
             workbook.close();
 
-
 //        for(int i=1; i<worksheet.getPhysicalNumberOfRows(); i++) {
-//            Player tempPlayer = new Player();
+//            User tempPlayer = new User();
 //
 //            //Skip the Excel's header.
 //            XSSFRow row = worksheet.getRow(i);
@@ -128,13 +121,11 @@ public class FileUploadController {
 //            tempPlayer.setNamefield(nameField);
 //            System.out.println(nameField);
 //
-//            tempPlayerList.add(tempPlayer);
+//            tempUserList.add(tempPlayer);
 //
-//            playerService.AddPlayer(tempPlayer);
+//            userService.AddPlayer(tempPlayer);
 //        }
-//        playerService.AddPlayer(tempPlayerList);
-
-
+//        userService.AddPlayer(tempUserList);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -148,14 +139,12 @@ public class FileUploadController {
         } finally {
             System.out.println("Finally Thrown");
         }
-
         String fileName = StringUtils.cleanPath(ExcelDataFile.getOriginalFilename());
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/downloadFile/")
                 .path(fileName)
                 .toUriString();
-
-        return new UploadFileResponse(fileName, fileDownloadUri, ExcelDataFile.getContentType(), ExcelDataFile.getSize(), nameField, tempPlayerList);
+        return new UploadFileResponse(fileName, fileDownloadUri, ExcelDataFile.getContentType(), ExcelDataFile.getSize(), nameField, tempUserList);
     }
 
 }

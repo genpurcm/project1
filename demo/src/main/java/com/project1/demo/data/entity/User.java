@@ -4,16 +4,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name="PLAYER")
-public class Player {
-//    @Id
-//    @Column(name = "PLAYER_ID")
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private long id;
+public class User {
     @Id
     @Column(name = "EMAILADDRESS")
     private String emailAddress;
@@ -53,8 +48,7 @@ public class Player {
     private List<Role> roles;
 
 
-    public Player(String firstName, String lastName, String emailAddress, String team, double number, String position, LocalDate birthday, double weight, double height, String nationality, String namefield, String password, List<Role> roles) {
-//        this.id = id;
+    public User(String firstName, String lastName, String emailAddress, String team, double number, String position, LocalDate birthday, double weight, double height, String nationality, String namefield, String password, List<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
@@ -70,17 +64,9 @@ public class Player {
         this.roles = roles;
     }
 
-    public Player() {
+    public User() {
 
     }
-
-//    public long getId() {
-//        return id;
-//    }
-//
-//    public void setId(long id) {
-//        this.id = id;
-//    }
 
     public String getFirstName() {
         return firstName;

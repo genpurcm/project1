@@ -1,30 +1,28 @@
 package com.project1.demo.payload;
 
-import com.project1.demo.data.entity.Player;
+import com.project1.demo.data.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.ui.ModelMap;
 
-import java.util.List;
-
 public class S42Response {
-    private Page<Player> dataPlayer;
+    private Page<User> dataUser;
     private int currentPage;
     private int currentSize;
     private ModelMap model;
 
-    public S42Response(Page<Player> dataPlayer, int currentPage, int currentSize, ModelMap model) {
-        this.dataPlayer = dataPlayer;
+    public S42Response(Page<User> dataUser, int currentPage, int currentSize, ModelMap model) {
+        this.dataUser = dataUser;
         this.currentPage = currentPage;
         this.currentSize = currentSize;
         this.model = model;
     }
 
-    public Page<Player> getDataPlayer() {
-        return dataPlayer;
+    public Page<User> getDataUser() {
+        return dataUser;
     }
 
-    public void setDataPlayer(Page<Player> dataPlayer) {
-        this.dataPlayer = dataPlayer;
+    public void setDataUser(Page<User> dataUser) {
+        this.dataUser = dataUser;
     }
 
     public int getCurrentPage() {
