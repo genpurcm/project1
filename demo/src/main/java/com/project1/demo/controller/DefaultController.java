@@ -29,6 +29,9 @@ public class DefaultController {
         return "/index";
     }
 
+    @GetMapping("/index_layout")
+    public String index_layout() { return "/index_layout"; }
+
     @GetMapping("/admin")
     public String admin() {
         return "/admin";

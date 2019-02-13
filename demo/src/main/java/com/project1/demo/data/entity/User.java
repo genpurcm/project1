@@ -3,18 +3,25 @@ package com.project1.demo.data.entity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name="PLAYER")
+@Table(name="USER")
 public class User {
     @Id
-    @Column(name = "EMAILADDRESS")
+    @Email
+    @NotEmpty
+    @Column(name = "EMAILADDRESS", nullable = false, unique = true)
     private String emailAddress;
-    @Column(name = "FIRSTNAME")
+    @NotEmpty(message = "Please, enter the first name *from user annotation*")
+    @Column(name = "FIRSTNAME", nullable = false)
     private String firstName;
-    @Column(name = "LASTNAME")
+    @NotEmpty
+    @Column(name = "LASTNAME", nullable = false)
     private String lastName;
     @Column(name = "TEAM")
     private String team;
@@ -33,9 +40,9 @@ public class User {
     private String nationality;
     @Column(name = "NAMEFIELD")
     private String namefield;
-//    @NotEmpty (message = "The above field must not be blank.")
-//    @Size(min = 5, message = "{password.size}")
-    @Column(name = "PASSWORD")
+    @NotEmpty (message = "The above field must not be blank")
+    @Size(min = 5, message = "The password must have at least 5 characters")
+    @Column(name = "PASSWORD", nullable = false)
     private String password;
 
 //    @NotEmpty
@@ -48,7 +55,7 @@ public class User {
     private List<Role> roles;
 
 
-    public User(String firstName, String lastName, String emailAddress, String team, double number, String position, LocalDate birthday, double weight, double height, String nationality, String namefield, String password, List<Role> roles) {
+    public User(String firstName, String lastName, String emailAddress, String team, double number, String position, LocalDate birthday, double weight, double height, String nationality, String namefield, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
@@ -61,11 +68,10 @@ public class User {
         this.nationality = nationality;
         this.namefield = namefield;
         this.password = password;
-        this.roles = roles;
+//        this.roles = roles;
     }
 
     public User() {
-
     }
 
     public String getFirstName() {

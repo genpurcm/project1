@@ -4,6 +4,8 @@ import com.project1.demo.data.entity.User;
 import com.project1.demo.data.repository.CrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +21,28 @@ public class CrudController {
     @Autowired
     private CrudRepository crudRepository;
 
+//    @GetMapping("/crud")
+//    public String showCrud(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size){
+//        model.addAttribute("data", crudRepository.findAll(PageRequest.of(page, size)));
+//        model.addAttribute("currentPage", page);
+//        model.addAttribute("currentSize", size);
+//        return "/crud";
+//    }
+//
+//    @GetMapping("/crud2")
+//    public String showCrud2(Model model, @RequestParam(defaultValue = "") String name, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size){
+//        Pageable pageable = PageRequest.of(page, size);
+//        model.addAttribute("data", crudRepository.findByfirstNameLike("%"+name+"%", pageable));
+//        model.addAttribute("currentPage", page);
+//        model.addAttribute("currentSize", size);
+//        return "/crud";
+//    }
+
     @GetMapping("/crud")
-    public String showCrud(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size){
-        model.addAttribute("data", crudRepository.findAll(PageRequest.of(page, size)));
+    public String showCrud3(Model model, @RequestParam(defaultValue = "") String name, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size){
+        Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "emailAddress");
+//        model.addAttribute("data", crudRepository.findByFirstNameIgnoreCaseContainingOrLastNameIgnoreCaseContaining("%"+name+"%", "%"+name+"%", pageable));
+        model.addAttribute("data", crudRepository.findByInPut("%"+name+"%", "%"+name+"%", "%"+name+"%", pageable));
         model.addAttribute("currentPage", page);
         model.addAttribute("currentSize", size);
         return "/crud";

@@ -15,7 +15,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public void AddPlayer(User user){
+    public void AddUser(User user){
 //        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 //        user.setPassword(encoder.encode(user.getPassword()));
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
@@ -40,11 +40,18 @@ public class UserService {
 //        player.setRoles(roles);
 //        userRepository.save(player);
 //    }
-    public Iterable<User> getPlayers(){
+    public Iterable<User> getUsers(){
 //        Iterable<User> foundPlayers = userRepository.findAll();
         return userRepository.findAll();
     }
 
+    public boolean isUserPresent(String emailAddress) {
+        User u = userRepository.findById(emailAddress).orElse(null);
+        System.out.println(u);
+        if (u != null)
+            return true;
+        return false;
+    }
 
 //    public User GetPlayerByName(String name){
 //        userRepository.findByName(String name);

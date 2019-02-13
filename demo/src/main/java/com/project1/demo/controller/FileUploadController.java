@@ -69,7 +69,7 @@ public class FileUploadController {
                 System.out.println("Lamda forEach Loop");
 
                 tempUserList.add(tempUser);
-                userService.AddPlayer(tempUser);
+                userService.AddUser(tempUser);
             });
 
 //        while (rows.hasNext()){
@@ -94,7 +94,7 @@ public class FileUploadController {
 //
 //            tempUserList.add(tempPlayer);
 //
-//            userService.AddPlayer(tempPlayer);
+//            userService.AddUser(tempPlayer);
 //        }
 
             workbook.close();
@@ -123,9 +123,9 @@ public class FileUploadController {
 //
 //            tempUserList.add(tempPlayer);
 //
-//            userService.AddPlayer(tempPlayer);
+//            userService.AddUser(tempPlayer);
 //        }
-//        userService.AddPlayer(tempUserList);
+//        userService.AddUser(tempUserList);
 
         } catch (IOException e) {
             e.printStackTrace();

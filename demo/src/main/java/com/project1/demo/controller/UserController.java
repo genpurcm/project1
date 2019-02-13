@@ -16,9 +16,8 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public Iterable<User> getPlayers(){
-        Iterable<User> PlayerList = this.userService.getPlayers();
-//        model.addAttribute("roomReservations", roomReservationList);
-        return PlayerList;
+    public Iterable<User> getUsers(){
+        Iterable<User> UserList = this.userService.getUsers();
+        return UserList;
     }
 }

@@ -13,7 +13,7 @@ function GetUserList() {
             type: 'GET',
     //        contentType: "application/json",
     //        dataType: "json",
-            url: "/users",
+            url: "/dev/users",
     //        processData: false,
     //        contentType: false,
             success: function(data){
@@ -33,7 +33,7 @@ $('#GetUserListS3').on("click", function(){
         type: 'GET',
 //        contentType: "application/json",
 //        dataType: "json",
-        url: "/usersS3",
+        url: "/dev/usersS3",
         async:true,
      }).done(function(data, textStatus, jqXHR){
             console.log("GetUserListS3 Button Success");

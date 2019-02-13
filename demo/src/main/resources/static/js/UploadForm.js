@@ -31,7 +31,7 @@ $('#singleUploadForm').submit(function(event) {
             $("#SingleFileUploadSuccess").css('display', 'block');
             document.getElementById("added_items").style.display = 'block';
 
-            $.each(data.playerList, function(idx, item){
+            $.each(data.userList, function(idx, item){
 //                var birthdayItem = new Date(item.birthday);
 //                var birthday = (birthdayItem.getMonth() + 1) + "/" + birthdayItem.getDate() + "/" + birthdayItem.getFullYear();
                 $("#table_body").append("<tr><td>" + item.firstName + "</td><td>" + item.lastName + "</td><td>" + item.emailAddress + "</td><td>" + dateFormat(item.birthday) + "</td></tr>")

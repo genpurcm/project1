@@ -11,9 +11,8 @@ import org.springframework.stereotype.Repository;
 //}
 
 @RepositoryRestResource(exported = false)
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, String> {
 }
-
 
 //    CrudRepository provides CRUD functions
 //    PagingAndSortingRepository provides methods to do pagination and sort records

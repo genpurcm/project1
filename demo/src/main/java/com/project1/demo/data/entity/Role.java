@@ -1,5 +1,7 @@
 package com.project1.demo.data.entity;//package com.project1.demo.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
@@ -13,6 +15,7 @@ public class Role {
     @Column(name = "ROLENAME")
     private String name;
     @ManyToMany(mappedBy = "roles")
+    @JsonIgnore
     @Column(name = "USERLIST")
     private List<User> users;
 
@@ -24,17 +27,17 @@ public class Role {
         this.name = name;
     }
 
-    public List<User> getPlayerList() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setPlayerList(List<User> userList) {
-        this.users = userList;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
-    public Role(String name, List<User> userList) {
+    public Role(String name, List<User> users) {
         this.name = name;
-        this.users = userList;
+        this.users = users;
     }
     public Role() {
     }
