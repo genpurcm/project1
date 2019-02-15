@@ -3,11 +3,9 @@
 <head>
     <title>Index</title>
     <meta charset="utf-8">
-
     <div th:replace="fragments/header :: header-css"/>
 </head>
 <body>
-
     <div th:replace="fragments/header :: header"/>
         <div class="page-header">
             <h1>Welcome to the TEST Reservations Page</h1>
@@ -22,7 +20,6 @@
                 <h2>2. Visit <a th:href="@{/user}">User page (Spring Security protected, Need User Role)</a></h2>
                 <h2>3. Visit <a th:href="@{/about}">Normal page</a></h2>
             </div>
-
         </div>
     <div th:replace="fragments/footer :: footer"/>
 </body>

@@ -11,8 +11,8 @@ import java.util.List;
 @Table(name="ROLE")
 public class Role {
     @Id
-//    @NotEmpty
-    @Column(name = "ROLENAME")
+    @NotEmpty
+    @Column(name = "ROLENAME", length = 10)
     private String name;
     @ManyToMany(mappedBy = "roles")
     @JsonIgnore
@@ -41,8 +41,6 @@ public class Role {
     }
     public Role() {
     }
-
-//    public Role(String name) {
     public Role(@NotEmpty String name) {
         this.name = name;
     }

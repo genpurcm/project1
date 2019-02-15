@@ -2,6 +2,7 @@ package com.project1.demo.controller;
 
 import com.project1.demo.data.entity.User;
 import com.project1.demo.data.repository.CrudRepository;
+import com.project1.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -20,6 +21,9 @@ public class CrudController {
 
     @Autowired
     private CrudRepository crudRepository;
+
+    @Autowired
+    private UserService userService;
 
 //    @GetMapping("/crud")
 //    public String showCrud(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size){
@@ -48,9 +52,15 @@ public class CrudController {
         return "/crud";
     }
 
+//    @PostMapping("/save")
+//    public String save(User user){
+//        crudRepository.save(user);
+//        return "redirect:/crud";
+//    }
+
     @PostMapping("/save")
     public String save(User user){
-        crudRepository.save(user);
+        userService.AddUser(user);
         return "redirect:/crud";
     }
 

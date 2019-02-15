@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.List;
@@ -31,6 +32,7 @@ public class User {
     private String position;
     @Column(name = "BIRTHDAY")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Past
     private LocalDate birthday;
     @Column(name = "WEIGHT")
     private double weight;
