@@ -66,7 +66,4 @@ public class DefaultController {
         model.put("indexcontroller", this.message);
         return "/indexori";
     }
-
-
-
 }

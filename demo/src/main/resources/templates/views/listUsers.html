@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragments/main_layout}">
+<head>
+    <title>CRUD</title>
+</head>
+<body>
+    <div layout:fragment="content" class="container">
+        <div class="card">
+            <div class="card card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Manage</th>
+                    </thead>
+                    <tbody>
+                        <tr th:each="user:${users}">
+                            <td th:text="|${user.firstName} ${user.lastName}|"></td>
+                            <!--<td th:text="${user.lastName}"></td>-->
+                            <td th:text="${user.emailAddress}"></td>
+                            <td><a th:href="@{/admin/role/getRoles(emailAddress=${user.emailAddress})}" class="btn btn-primary">Roles</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

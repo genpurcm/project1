@@ -18,9 +18,9 @@ public class UserRestController {
     private UserService userService;
 
     @GetMapping("/users")
-    public Iterable<User> getPlayers(){
-        Iterable<User> PlayerList = this.userService.getUsers();
-        return PlayerList;
+    public Iterable<User> getUsers(){
+        Iterable<User> UserList = this.userService.getUsers();
+        return UserList;
     }
 
     @Autowired

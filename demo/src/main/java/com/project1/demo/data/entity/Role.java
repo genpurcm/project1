@@ -6,7 +6,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
-
 @Entity
 @Table(name="ROLE")
 public class Role {
