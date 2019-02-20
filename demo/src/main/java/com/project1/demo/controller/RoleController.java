@@ -36,13 +36,17 @@ public class RoleController {
     }
 
     @PostMapping("/admin/role/addRole")
-    public String addRole(@Valid Role role, BindingResult bindingResult, HttpSession session) {
+    public String addRole(Model model, @Valid Role role, BindingResult bindingResult, HttpSession session) {
         if(bindingResult.hasErrors()){
             return "views/roleForm";
         }
         String emailAddress = (String) session.getAttribute("emailAddress");
         roleService.addRole(role, emailAddress);
-        return "redirect:/admin/user/getUsers";
+        User user = userRepository.findById(emailAddress).orElse(null);
+        model.addAttribute("roles", user.getRoles());
+        model.addAttribute("emailAddress", emailAddress);
+//        return "redirect:/admin/user/getUsers";
+        return "views/listRoles";
     }
 
     @GetMapping("/admin/role/getRoles")
@@ -55,7 +59,7 @@ public class RoleController {
     }
 
     @GetMapping("/admin/role/deleteRole")
-    public String deleteRole(String emailAddress, Role role) {
+    public String deleteRole(Model model, String emailAddress, Role role) {
         User user = userRepository.findById(emailAddress).orElse(null);
         List<Role> roles = new ArrayList<>(user.getRoles());
         roles.remove(role);
@@ -63,6 +67,8 @@ public class RoleController {
         user.setRoles(roles);
         userRepository.save(user);
 //        roleService.deleteRole(user, role);
+        model.addAttribute("roles", user.getRoles());
+        model.addAttribute("emailAddress", emailAddress);
         return "views/listRoles";
 //        return "redirect:/getRoles";
     }

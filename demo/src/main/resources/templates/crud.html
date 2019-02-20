@@ -46,20 +46,19 @@
 <body>
 <div layout:fragment="content" class="container">
     <div class="container">
-        <!--<br>-->
-        <!--<div>-->
             <h1 color="blue">CRUD...</h1>
-        <!--</div>-->
-        <!--<br>-->
-        <button class="btn btn-success nBtn" style="margin-bottom: 8px;">New</button>
-        <br>
-        <form action="/crud" class="form-inline">
-            <div class="form-group mb-2">
-                <input type="text" class="form-control" name="name" placeholder="Search User" />
-                <input type="Submit" value="Search" class="btn btn-primary" />
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <button class="btn btn-success nBtn" style="margin-bottom:6px;">New</button>
+                </div>
+                <br>
+                <div class="col-xs-12 col-md-6">
+                    <form action="/crud" class="form-inline float-right">
+                            <input type="text" class="form-control" name="name" placeholder="Search User" />
+                            <input type="Submit" value="Search" class="btn btn-primary" />
+                    </form>
+                </div>
             </div>
-        </form>
-
         <div class="card">
             <div class="card card-body">
                 <table class="table table-hover" style="margin-bottom: 0px;">
