@@ -4,6 +4,8 @@
     <title>Index</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <div th:replace="fragments/header :: header-css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -80,6 +82,7 @@
   </style>
 </head>
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
+<div th:replace="fragments/header :: header"/>
 
 <div class="container-fluid responsive-height card" style="background-color:#2196F3;color:#fff;min-height:responsive;">
     <div class="row" id="firstRow">
@@ -282,8 +285,9 @@
         </div>
     </div>
 </div>
-<footer>
+<!--<footer>-->
     <div class="container-fluid responsive-height card" style="background-color:#2196F3;color:#fff;min-height:responsive;">
+        <div th:replace="fragments/footer :: footerFull"/>
         <div class="row" id="footerRow">
             <div class="col">
                 <h1>Footer</h1>
@@ -291,7 +295,7 @@
             </div>
         </div>
     </div>
-</footer>
+<!--</footer>-->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>

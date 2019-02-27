@@ -57,13 +57,18 @@ public class DefaultController {
         return "/error/403";
     }
 
-    @GetMapping("/indexori")
+    @GetMapping("/demo")
     public String indexori(ModelMap model) {
         // Get authenticated user name from SecurityContext
         SecurityContext context = SecurityContextHolder.getContext();
         model.addAttribute("message", "You are logged in as "
                 + context.getAuthentication().getName());
         model.put("indexcontroller", this.message);
-        return "/indexori";
+        return "/demo";
+    }
+
+    @GetMapping("/test1")
+    public String test1() {
+        return "/test1";
     }
 }
