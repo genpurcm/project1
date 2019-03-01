@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">
 <head><title>Error Occurred</title></head>
-<body>
-<h1>Error Occurred!</h1>
-<h2>Our Engineers are working on it!</h2>
-<b>[<span th:text="|The status code is: ${status}|">status</span>]
-    <span th:text="${error}">error</span>
-</b>
-<p th:text="|The error is: ${message}|">message</p>
+<body class="d-flex flex-column">
+    <div layout:fragment="content" class="container flex-grow mt-5 pt-3">
+        <h1>Error Occurred!</h1>
+        <h2>Our Engineers are working on it!</h2>
+        <b>[<span th:text="|The status code is: ${status}|">status</span>]
+            <span th:text="${error}">error</span>
+        </b>
+        <p th:text="|The error is: ${message}|">message</p>
+    </div>
 </body>
 </html>

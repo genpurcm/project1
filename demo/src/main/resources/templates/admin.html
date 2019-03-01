@@ -1,25 +1,22 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">
 <head>
-    <div th:replace="fragments/header :: header-css"/>
+    <title>Admin</title>
 </head>
-<body>
+<body class="d-flex flex-column">
+    <div layout:fragment="content" class="container flex-grow mt-5 pt-3">
+        <div class="starter-template">
+            <h1>Admin page (Spring Security protected)</h1>
 
-<div th:replace="fragments/header :: header"/>
+            <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Sign Out"/>
+            </form>
 
-<div class="container">
-    <div class="starter-template">
-        <h1>Admin page (Spring Security protected)</h1>
-
-        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
-        </form>
-
+        </div>
     </div>
-</div>
-<!-- /.container -->
-<div th:replace="fragments/footer :: footer"/>
 
 </body>
 </html>

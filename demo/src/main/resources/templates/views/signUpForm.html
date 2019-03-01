@@ -5,8 +5,8 @@
 <head>
     <title>Sign-UP Form</title>
 </head>
-<body>
-<div layout:fragment="content" class="container">
+<body class="d-flex flex-column">
+<div layout:fragment="content" class="container flex-grow mt-5 pt-3">
     <div class="alert alert-info" th:if="${exist}">
     <p class="text text-center">
         A User already exists with this email address!

@@ -1,26 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">
 <head>
     <title>Index</title>
-    <meta charset="utf-8">
-    <div th:replace="fragments/header :: header-css"/>
 </head>
-<body>
-    <div th:replace="fragments/header :: header"/>
-        <div class="page-header">
-            <h1>Welcome to the MRC Demo Site</h1>
-            <p th:text="${indexcontroller}"></p>
-            <h3 th:text="${message}"></h3>
-        </div>
-        <div class="container">
-
-            <div class="starter-template">
-                <h1>Menu / Options</h1>
-                <h2>1. Visit <a th:href="@{/admin}">Admin page</a></h2>
-                <h2>2. Visit <a th:href="@{/user}">User page </a></h2>
-                <h2>3. Visit <a th:href="@{/about}">Normal page</a></h2>
+<body class="d-flex flex-column">
+    <div layout:fragment="content" class="container flex-grow mt-5 pt-3">
+        <!--<div th:replace="fragments/header :: header"/>-->
+        <div>
+            <div class="page-header">
+                <h1>Welcome to the MRC Demo Site</h1>
+                <p th:text="${indexcontroller}"></p>
+                <h3 th:text="${message}"></h3>
+            </div>
+            <div class="container">
+                <div class="starter-template">
+                    <h1>Menu / Options</h1>
+                    <h2>1. Visit <a th:href="@{/admin}">Admin page</a></h2>
+                    <h2>2. Visit <a th:href="@{/user}">User page </a></h2>
+                    <h2>3. Visit <a th:href="@{/about}">Normal page</a></h2>
+                </div>
             </div>
         </div>
-    <div th:replace="fragments/footer :: footer"/>
+        <!--<div th:replace="fragments/footer :: footer"/>-->
+    </div>
 </body>
 </html>

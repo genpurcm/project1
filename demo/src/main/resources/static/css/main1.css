@@ -1,5 +1,9 @@
-body{
-    padding-top:60px;
+body {
+    min-height: 100vh;
+}
+
+.flex-grow {
+    flex: 1;
 }
 
 h1{
@@ -10,9 +14,10 @@ h2{
 	color:#FF0000;
 }
 
-footer{
+/*footer{
     margin-top:60px;
 }
+*/
 
 ul p > .fa-map-marked-alt {
      -webkit-transition: all 0.5s ease;
