@@ -76,4 +76,9 @@ public class DefaultController {
     public String test2() {
         return "/test2";
     }
+
+    @GetMapping("/uploadfile")
+    public String uploadfile() {
+        return "/uploadfile";
+    }
 }

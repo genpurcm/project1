@@ -6,8 +6,12 @@
     <title>Layout Dialect Example</title>
 </head>
 <body class="d-flex flex-column">
-<div layout:fragment="content" class="container flex-grow mt-5 pt-3">
-        <div class="card">
+    <div layout:fragment="content" class="container flex-grow mt-5 pt-3">
+        <div>
+            <h1 style="display: inline">Roles assigned to:</h1>
+            <h3 style="display: inline" th:text="${emailAddress}"></h3>
+        </div>
+        <br>
             <div class="card card-body">
                 <table class="table table-hover">
                     <thead>
@@ -25,8 +29,15 @@
                     </tbody>
                 </table>
             </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <a th:href="@{/admin/role/addRole(emailAddress=${emailAddress})}" class="btn btn-primary" style="margin-top:6px;">Add Role</a>
+            </div>
+            <div class="col-xs-12 col-md-6 float-right">
+                <input class="btn btn-success" type="button" value="Back" onclick="window.history.backward()" style="margin-top:6px;">
+            </div>
         </div>
-        <a th:href="@{/admin/role/addRole(emailAddress=${emailAddress})}" class="btn btn-primary" style="margin-top:6px;">Add Role</a>
+
     </div>
 </body>
 </html>

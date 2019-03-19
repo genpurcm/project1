@@ -2,9 +2,14 @@
 $(function(){
     $('.table .eBtn, .nBtn').on('click', function(event){
         event.preventDefault();
+//        var params = new URLSearchParams(document.location.search.substring(1));
+//        var page = parseInt(params.get("page"));
+//        var href = $(this).attr('href') + "&page=" + page + "&size=" + getRequestParamPaging('size');
         var href = $(this).attr('href');
         var text = $(this).text();
-        console.log(text);
+//        console.log(text);
+//        console.log(params);
+//        console.log(page);
         if (text == 'Edit'){
             $('#save-createBtn').val("Save").removeClass( "btn-success" ).addClass( "btn-primary" );
             $('.form-group #Nro').parent().closest('div').css('display', 'block');
@@ -27,6 +32,7 @@ $(function(){
     //        console.log(json);
     //        console.log("Data: " + json);
     //        console.log("jsonData: " + json[0].myvalue + "/" + json[1].myvalue2);
+            console.log(href);
             $.get(href, function(player,status){
 //                $('.myForm #id').val(player.id);
                 $('.myForm #firstName').val(player.firstName);
@@ -52,21 +58,34 @@ $(function(){
 
     $('.table .dBtn').on('click', function(event){
         event.preventDefault();
+//        var params = new URLSearchParams(document.location.search.substring(1));
+//        var page = parseInt(params.get("page"));
         var href = $(this).attr('href');
+//        var href = $(this).attr('href') + "&page=" + page + "&size=" + getRequestParamPaging('size');
+//        console.log(document.location.search.substring(1));
+//        console.log(params);
+//        console.log(page);
 //        console.log($(this).data('valuejson'));
 //        console.log($(this).attr('data-valuejson'));
 //        console.log($(this).data('valuejson').firstName);
 //        var kk = JSON.parse($(this).attr('data-valuejson'));
-//        console.log(kk);
 //        console.log("Attr: " + kk);
 //        console.log("jsonAttr: " + kk.id + "/" + kk.firstName);
         $('#itemToDelete').empty();
         $('#itemToDelete').append("<p style='color:blue; padding-left:3px'>ID: " + $(this).data('valuejson').emailAddress + "</p>");
         $('#itemToDelete').append("<p style='color:blue; padding-left:3px'>Name: " + $(this).data('valuejson').firstName + " " + $(this).data('valuejson').lastName + "</p>");
         $('#deleteModal #delRef').attr('href', href);
+        console.log($('#deleteModal #delRef').attr('href'));
         $('#deleteModal').modal();
     });
 });
+
+function getRequestParamPaging(inp){
+    console.log("In Param is:" + inp);
+    var outp = (window.location.search.match(new RegExp('[?&]' + inp + '=([^&]+)')) || [, null])[1];
+    console.log("Out Param is:" + outp);
+    return outp;
+};
 
 $(function(){
     $('#pageSizeSelect').change(function(evt){

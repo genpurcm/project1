@@ -59,15 +59,20 @@ public class CrudController {
 //    }
 
     @PostMapping("/save")
-    public String save(User user){
+    public String save(User user, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size){
         userService.AddUser(user);
-        return "redirect:/crud";
+        return "redirect:/crud" + "?page=" + page + "&size=" +  size;
     }
 
     @GetMapping("/delete")
-    public String delete(String Id){
+    public String delete(String Id, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size){
+//        Pageable pageable = PageRequest.of(page, size, Sort.Direction.ASC, "emailAddress");
         crudRepository.deleteById(Id);
-        return "redirect:/crud";
+//        System.out.println("THE PAGE-SIZE ARE: " + page + size);
+//        model.addAttribute("data", crudRepository.findByInPut("%"+name+"%", "%"+name+"%", "%"+name+"%", pageable));
+//        model.addAttribute("currentPage", page);
+//        model.addAttribute("currentSize", size);
+        return "redirect:/crud" + "?page=" + page + "&size=" +  size;
     }
 
     @GetMapping("/findById")

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 
     <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">MRC</title>
@@ -11,10 +12,9 @@
     <div th:replace="fragments/header :: header"/>
 
         <div layout:fragment="content"/>
-        <!--<div layout:fragment="content" class="sticky-offset"/>-->
 
-    <!--<th:block th:replace="fragments/footer :: footer"/>-->
-    <div th:replace="fragments/footer :: footerFull"/>
+    <div th:replace="${#authorization.expression('hasRole(''ADMIN'')')} ? ~{fragments/footer :: footer_Admin} : ~{fragments/footer :: footer_Full}" />
+    <!--<div th:replace="${#request.isUserInRole('ADMIN')} ? ~{fragments/footer :: footer_Admin} : ~{fragments/footer :: footer_Full}" />-->
 
 </body>
 </html>

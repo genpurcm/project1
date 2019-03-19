@@ -13,10 +13,7 @@
     <script type="text/javascript" th:src="@{js/CRUD.js}" src="../static/js/CRUD.js"></script>
 
     <style>
-        <!--.navbar {-->
-        <!--possition: sticky;-->
-        <!--top: 0px;-->
-        <!--}-->
+
         .pagination-centered {
             text-align: center;
         }
@@ -27,13 +24,13 @@
         .pointer-disabled {
             pointer-events: none;
         }
-        #KK {
+        #align1 {
             display: table;
             height: 40px;
             margin: 0 auto;
             width: 400px;
         }
-        #KKK {
+        #align2 {
             background: #0000;
             padding: 6px;
             text-align: center;
@@ -81,7 +78,7 @@
                             <td th:text="${user.lastName}"></td>
                             <td th:text="${user.emailAddress}"></td>
                             <td th:text="${user.birthday}"></td>
-                            <td><a th:href="@{delete/(Id=${user.emailAddress})}" th:value="${iterator.index + 1}" th:attr="data-valuejson='{&quot;emailAddress&quot;: &quot;'+${user.emailAddress}+'&quot; ,&quot;firstName&quot;: &quot;'+${user.firstName}+'&quot; , &quot;lastName&quot;: &quot;'+${user.lastName}+'&quot;}'" class="btn btn-danger dBtn">Delete</a></td>
+                            <td><a th:href="@{delete/(Id=${user.emailAddress}, page=${currentPage}, size=${currentSize})}" th:value="${iterator.index + 1}" th:attr="data-valuejson='{&quot;emailAddress&quot;: &quot;'+${user.emailAddress}+'&quot; ,&quot;firstName&quot;: &quot;'+${user.firstName}+'&quot; , &quot;lastName&quot;: &quot;'+${user.lastName}+'&quot;}'" class="btn btn-danger dBtn">Delete</a></td>
                             <!--<td><a th:href="@{delete/(Id=${user.id})}" th:value="${iterator.index + 1}" data-valuejson='{"id": "${#user.id}", "firstName": "${user.firstName}", "lastName": "user.lastName"}' class="btn btn-danger dBtn">Delete</a></td>-->
                             <td><a th:href="@{findById(Id=${user.emailAddress})}" th:value="${iterator.index + 1}" data-valuejson='[{"myvalue": 1, "myvalue2": "A"}, {"myvalue": 2, "myvalue2": "B"}]' class="btn btn-primary eBtn">Edit</a></td>
                             <td><a th:href="@{/admin/role/getRoles(emailAddress=${user.emailAddress})}" class="btn btn-dark">Roles</a></td>
@@ -98,8 +95,8 @@
                             </option>
                         </select>
                     </div>
-                    <div class="form-group col-md-3" id="KK">
-                        <p th:text="|Page ${data.number + 1} of ${data.totalPages}|" id="KKK"></p>
+                    <div class="form-group col-md-3" id="align1">
+                        <p th:text="|Page ${data.number + 1} of ${data.totalPages}|" id="align2"></p>
                     </div>
                     <div th:if="${data.totalPages != 1}" class="form-group col-md-8" style="padding-right:22px; padding-left:22px;">
                         <ul class="nav nav-pills pagination justify-content-end">
@@ -131,7 +128,8 @@
         </div>
 
         <div class="myForm">
-            <form th:action="@{/save}" method="post">
+            <form th:action="@{/save(page=${currentPage}, size=${currentSize})}" + method="post">
+            <!--<form th:action="@{/save} + '?page=' + ${currentPage} + '&size=' + ${currentSize}" + method="post">-->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">

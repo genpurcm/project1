@@ -17,7 +17,7 @@
 </head>
 <body>
 
-<div th:fragment="footer">
+<div th:fragment="footer_Standard">
     <div class="container">
         <footer>
             © 2019 MRC.com
@@ -30,20 +30,22 @@
     </div>
 </div>
 
-<div th:fragment="footer2">
+<div th:fragment="footer_Admin">
     <div class="container">
         <footer2>
+            <div class="text-center">
             © 2019 MRC2.com
-            <span sec:authorize="isAuthenticated()">
-                | Logged user2: <span sec:authentication="name"></span> |
-                Roles2: <span sec:authentication="principal.authorities"></span> |
-                <a th:href="@{/logout}">Sign Out2</a>
-            </span>
+                <span sec:authorize="isAuthenticated()">
+                    | Logged user2: <span sec:authentication="name"></span> |
+                    Roles2: <span sec:authentication="principal.authorities"></span> |
+                    <a th:href="@{/logout}">Sign Out2</a>
+                </span>
+            </div>
         </footer2>
     </div>
 </div>
 
-<div th:fragment="footerFull" id="footer">
+<div th:fragment="footer_Full">
     <footerFull class="page-footer font-small bg-light pt-3 card" style="margin-top:4px">
         <div class="container-fluid text-center text-md-left">
             <div class="row">
