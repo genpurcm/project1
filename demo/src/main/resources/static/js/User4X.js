@@ -1,10 +1,11 @@
-    $('#GetUserListS41, #GetUserListtestA, #GetUserListS42').click(function(){
+$('#GetUserListS41, #GetUserListtestA, #GetUserListS42').click(function(){
 //    console.log($(this).data("value"))
 //    console.log(this.id)
 //    console.log($(this).attr("id"))
 //    console.log($('input:button').val())
 //    console.log($(this).val())
     var id = this.id
+    console.log("The ID is: " + id)
     var urlSelect
     var dataValue = $(this).data("value")
 

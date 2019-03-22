@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>Spring Boot File Upload / Download Rest API Example</title>
     <link rel="stylesheet" href="/css/main.css" />
-</head>
-<style>
+    <style>
     #table {
     border-collapse: collapse;
     width: 100%;
@@ -23,13 +22,11 @@
     background-color: #128ff2;
     color: white;
     }
-</style>
+    </style>
+</head>
 
 <body class="d-flex flex-column">
-<div layout:fragment="content" class="container flex-grow mt-5 pt-3">
-<noscript>
-    <h2>Sorry! Your browser doesn't support Javascript</h2>
-</noscript>
+<div layout:fragment="content" class="flex-grow mt-5 pt-3">
     <div class="upload-container">
         <div class="upload-header">
             <h2>Spring Boot File Upload / Download Rest API Example</h2>
@@ -39,8 +36,8 @@
                 <h3>Upload Single File</h3>
                 <form id="singleUploadForm" name="singleUploadForm">
                     <input id="singleFileUploadInput" type="file" name="file" class="file-input" required />
-                    <input id="singleFileUploadName" type="text" name="nameField" class="file-input" required />
-                    <button type="submit" class="primary submit-btn">Submit</button>
+                    <input id="singleFileUploadName" type="text" name="nameField" class="file-input" autocomplete="off" required />
+                    <button type="submit" class="btn btn-primary submit-btn" data-loading-text="<i class='fa fa-circle-o-notch fa-spin'></i> Loading File">Load</button>
                 </form>
                 <div class="upload-response">
                     <div id="singleFileUploadSuccess"></div>
@@ -60,8 +57,7 @@
             <!--</div>-->
         </div>
     </div>
-
-    <div id="added_items" style="display:none">
+    <div id="added_items" style="display:none;width:95%;margin:auto;text-align:center">
         <br>
         <br>
         <h1>The elements added are below:</h1>
@@ -78,8 +74,14 @@
             </tbody>
         </table>
     </div>
-<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <div class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered justify-content-center" role="document">
+            <span class="fa fa-spinner fa-spin fa-3x"></span>
+        </div>
+    </div>
+<!--<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>-->
+<!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>-->
 <script src="/js/UploadForm.js" ></script>
 </div>
 </body>

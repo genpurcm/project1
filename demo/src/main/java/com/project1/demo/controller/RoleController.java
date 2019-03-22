@@ -50,16 +50,21 @@ public class RoleController {
     }
 
     @GetMapping("/admin/role/getRoles")
-    public String getRoles(Model model, String emailAddress) {
+    public String getRoles(Model model, String emailAddress, Integer page, String size) {
 //        String emailAddress = principal.getName();
         User user = userRepository.findById(emailAddress).orElse(null);
         model.addAttribute("roles", user.getRoles());
+        model.addAttribute("firstName", user.getFirstName());
+        model.addAttribute("lastName", user.getLastName());
         model.addAttribute("emailAddress", emailAddress);
+        System.out.println("getRoles " + emailAddress + " / " + page + " / " + size);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("currentSize", size);
         return "views/listRoles";
     }
 
     @GetMapping("/admin/role/deleteRole")
-    public String deleteRole(Model model, String emailAddress, Role role) {
+    public String deleteRole(Model model, String emailAddress, Role role, Integer page, String size) {
         User user = userRepository.findById(emailAddress).orElse(null);
         List<Role> roles = new ArrayList<>(user.getRoles());
         roles.remove(role);
@@ -69,6 +74,9 @@ public class RoleController {
 //        roleService.deleteRole(user, role);
         model.addAttribute("roles", user.getRoles());
         model.addAttribute("emailAddress", emailAddress);
+        System.out.println("deleteRole " + emailAddress + " / " + page + " / " + size);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("currentSize", size);
         return "views/listRoles";
 //        return "redirect:/getRoles";
     }

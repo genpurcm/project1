@@ -7,6 +7,9 @@ $('#singleUploadForm').submit(function(event) {
     $('#table_body').empty();
     $("#singleFileUploadSuccess").empty();
     $("#singleFileUploadError").empty()
+//    $(this).button('loading');
+//    console.log("THIS.BUTTON IS: " + $(this).button)
+    $('.modal').modal('show');
     $.ajax({
         type: "POST",
         enctype: 'multipart/form-data',
@@ -45,6 +48,13 @@ $('#singleUploadForm').submit(function(event) {
             $("#SingleFileUploadSuccess").hide("slow");
             $("#singleFileUploadError").html("<p id='error' style='color:red'>Status: " + textStatus +" ReadyState Code: " + jqXHR.readyState +" Error: "+ jqXHR.status + "</p>");
             $("#error").append(errorThrown);
+        },
+        complete: function (jqXHR, textStatus) {
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log("Ajax CallBack Complete");
+            $('.modal').modal('hide');
+
         }
     });
     event.preventDefault();

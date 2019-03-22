@@ -6,12 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <title>CRUD</title>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-    <script type="text/javascript" th:src="@{js/CRUD.js}" src="../static/js/CRUD.js"></script>
-
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">-->
     <style>
         .pagination-centered {
             text-align: center;
@@ -36,6 +33,22 @@
             display: table-cell;
             vertical-align: middle;
         }
+        a.round {
+          text-decoration: none;
+          display: inline-block;
+          padding: 8px 16px;
+        }
+        a.round:hover {
+          background-color: #ddd;
+          color: black;
+        }
+        .next, .previous {
+          background-color: #f1f1f1;
+          color: black;
+        }
+        .round {
+          border-radius: 50%;
+        }
 
     </style>
 </head>
@@ -55,35 +68,40 @@
                     </form>
                 </div>
             </div>
-        <div class="card">
-            <div class="card card-body">
-                <table class="table table-hover" style="margin-bottom: 0px;">
-                    <thead>
-                        <tr>
-                            <th>Nro</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email Address</th>
-                            <th>Birthday</th>
-                            <th></th>
-                            <th>Manage</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody id="table_body">
-                        <tr th:each="user, iterator:${data.content}">
-                            <td th:text="${iterator.count + data.Number * data.Size}"></td>
-                            <td th:text="${user.firstName}"></td>
-                            <td th:text="${user.lastName}"></td>
-                            <td th:text="${user.emailAddress}"></td>
-                            <td th:text="${user.birthday}"></td>
-                            <td><a th:href="@{delete/(Id=${user.emailAddress}, page=${currentPage}, size=${currentSize})}" th:value="${iterator.index + 1}" th:attr="data-valuejson='{&quot;emailAddress&quot;: &quot;'+${user.emailAddress}+'&quot; ,&quot;firstName&quot;: &quot;'+${user.firstName}+'&quot; , &quot;lastName&quot;: &quot;'+${user.lastName}+'&quot;}'" class="btn btn-danger dBtn">Delete</a></td>
-                            <!--<td><a th:href="@{delete/(Id=${user.id})}" th:value="${iterator.index + 1}" data-valuejson='{"id": "${#user.id}", "firstName": "${user.firstName}", "lastName": "user.lastName"}' class="btn btn-danger dBtn">Delete</a></td>-->
-                            <td><a th:href="@{findById(Id=${user.emailAddress})}" th:value="${iterator.index + 1}" data-valuejson='[{"myvalue": 1, "myvalue2": "A"}, {"myvalue": 2, "myvalue2": "B"}]' class="btn btn-primary eBtn">Edit</a></td>
-                            <td><a th:href="@{/admin/role/getRoles(emailAddress=${user.emailAddress})}" class="btn btn-dark">Roles</a></td>
-                        </tr>
-                    </tbody>
-                </table>
+
+        <!--<div class="card">-->
+        <div th:switch="${#lists.size(data.content)}">
+            <h1 th:case="'0'">There are NO Users yet!</h1>
+            <div th:case="*">
+                <div class="card card-body">
+                            <table class="table table-hover" style="margin-bottom: 0px;">
+                        <thead>
+                            <tr>
+                                <th>Nro</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email Address</th>
+                                <th>Birthday</th>
+                                <th></th>
+                                <th>Manage</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="table_body">
+                            <tr th:each="user, iterator:${data.content}">
+                                <td th:text="${iterator.count + data.Number * data.Size}"></td>
+                                <td th:text="${user.firstName}"></td>
+                                <td th:text="${user.lastName}"></td>
+                                <td th:text="${user.emailAddress}"></td>
+                                <td th:text="${user.birthday}"></td>
+                                <td><a th:href="@{delete/(Id=${user.emailAddress}, page=${currentPage}, size=${currentSize})}" th:value="${iterator.index + 1}" th:attr="data-valuejson='{&quot;emailAddress&quot;: &quot;'+${user.emailAddress}+'&quot; ,&quot;firstName&quot;: &quot;'+${user.firstName}+'&quot; , &quot;lastName&quot;: &quot;'+${user.lastName}+'&quot;}'" class="btn btn-danger dBtn">Delete</a></td>
+                                <!--<td><a th:href="@{delete/(Id=${user.id})}" th:value="${iterator.index + 1}" data-valuejson='{"id": "${#user.id}", "firstName": "${user.firstName}", "lastName": "user.lastName"}' class="btn btn-danger dBtn">Delete</a></td>-->
+                                <td><a th:href="@{findById(Id=${user.emailAddress})}" th:value="${iterator.index + 1}" data-valuejson='[{"myvalue": 1, "myvalue2": "A"}, {"myvalue": 2, "myvalue2": "B"}]' class="btn btn-primary eBtn">Edit</a></td>
+                                <td><a th:href="@{admin/role/getRoles/(emailAddress=${user.emailAddress}, page=${currentPage}, size=${currentSize})}" class="btn btn-dark">Roles</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <hr style="margin-top: 0px;"/>
                 <div class="row">
                     <div class="form-group col-md-1">
@@ -101,30 +119,31 @@
                         <ul class="nav nav-pills pagination justify-content-end">
                             <li th:class="${data.number == 0} ? disabled">
                                 <a class="nav-link"
-                                th:href="@{''(page=0, size=${currentSize})}">«</a>
+                                   th:href="@{''(page=0, size=${currentSize})}">«</a>
                             </li>
                             <li th:class="${data.number == 0} ? disabled">
-                                <a class="nav-link"
-                                th:href="@{''(page=${data.number - 1}, size=${currentSize})}">←</a>
+                                <a class="previous round"
+                                   th:href="@{''(page=${data.number - 1}, size=${currentSize})}">&#8249;</a>
                             </li>
                             <li class="nav nav-pills" th:each="i : ${#numbers.sequence(0, data.totalPages-1)}">
                                 <a th:href="@{''(page=${i}, size=${currentSize})}"
-                                th:text="${i+1}" class="nav-link"
-                                th:classappend="${currentPage}==${i}?'active':''"></a>
+                                   th:text="${i+1}" class="nav-link"
+                                   th:classappend="${currentPage}==${i}?'active':''"></a>
+                            </li>
+                            <li th:class="${data.number + 1 == data.totalPages} ? disabled">
+                                <a class="next round"
+                                   th:href="@{''(page=${data.number + 1}, size=${currentSize})}">&#8250;</a>
                             </li>
                             <li th:class="${data.number + 1 == data.totalPages} ? disabled">
                                 <a class="nav-link"
-                                th:href="@{''(page=${data.number + 1}, size=${currentSize})}">→</a>
-                            </li>
-                            <li th:class="${data.number + 1 == data.totalPages} ? disabled">
-                                <a class="nav-link"
-                                th:href="@{''(page=${data.totalPages -1}, size=${currentSize})}">»</a>
+                                   th:href="@{''(page=${data.totalPages -1}, size=${currentSize})}">»</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
+        <!--</div>-->
 
         <div class="myForm">
             <form th:action="@{/save(page=${currentPage}, size=${currentSize})}" + method="post">
@@ -195,6 +214,8 @@
             </div>
         </div>
     </div>
+<script type="text/javascript" th:src="@{js/CRUD.js}" src="../static/js/CRUD.js"></script>
 </div>
+
 </body>
 </html>

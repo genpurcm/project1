@@ -8,33 +8,44 @@
 <body class="d-flex flex-column">
     <div layout:fragment="content" class="container flex-grow mt-5 pt-3">
         <div>
-            <h1 style="display: inline">Roles assigned to:</h1>
-            <h3 style="display: inline" th:text="${emailAddress}"></h3>
+            <h1 id="message" style="display: inline">Roles assigned to:</h1>
+            <h3 style="display: inline" th:text="|${firstName} ${lastName} / ${emailAddress}|"></h3>
         </div>
         <br>
-            <div class="card card-body">
-                <table class="table table-hover">
-                    <thead>
-                        <th>Role</th>
-                        <th style="">Manage</th>
-                    </thead>
-                    <tbody>
-                        <tr th:each="role:${roles}">
-                            <td th:text="${role.name}"></td>
-                            <!--<td th:text="${user.emailAddress}"></td>-->
-                            <!--<td th:each="role:${user.roles}"></td>-->
-                                <!--<tr th:if="${role != null}" th:text="${role.name}"></tr>-->
-                            <td><a th:href="@{/admin/role/deleteRole(emailAddress=${emailAddress},role=${role.name})}" class="btn btn-danger">Delete</a></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div th:if="!${#lists.isEmpty(roles)}">
+                <div class="card card-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <th>Role</th>
+                                <th style="">Manage</th>
+                            </thead>
+                            <tbody>
+                                <tr th:each="role:${roles}">
+                                    <td th:text="${role.name}"></td>
+                                    <!--<td th:text="${user.emailAddress}"></td>-->
+                                    <!--<td th:each="role:${user.roles}"></td>-->
+                                        <!--<tr th:if="${role != null}" th:text="${role.name}"></tr>-->
+                                    <td><a th:href="@{/admin/role/deleteRole(emailAddress=${emailAddress}, role=${role.name}, page=${currentPage}, size=${currentSize})}" class="btn btn-danger">Delete</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+            <div th:if="${#lists.isEmpty(roles)}">
+                <script th:inline="javascript">
+                    <!--/*<![CDATA[*/-->
+                        window.onload = function() {
+                            $("#message").text("There are no assigned roles for:")
+                        };
+                    <!--/*]]>*/-->
+                </script>
             </div>
         <div class="row">
             <div class="col-xs-12 col-md-6">
                 <a th:href="@{/admin/role/addRole(emailAddress=${emailAddress})}" class="btn btn-primary" style="margin-top:6px;">Add Role</a>
             </div>
             <div class="col-xs-12 col-md-6 float-right">
-                <input class="btn btn-success" type="button" value="Back" onclick="window.history.backward()" style="margin-top:6px;">
+                <a th:href="@{/crud(page=${currentPage}, size=${currentSize})}" class="btn btn-success" style="margin-top:6px;">Back</a>
             </div>
         </div>
 
